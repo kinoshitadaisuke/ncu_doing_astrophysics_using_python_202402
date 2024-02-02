@@ -1,6 +1,6 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/01/18 13:49:24 (UT+8) daisuke>
+Time-stamp: <2024/02/02 15:08:50 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
 
@@ -43,3 +43,8 @@ git clone https://github.com/kinoshitadaisuke/ncu_doing_astrophysics_using_pytho
 |14/May/2024|18:00-20:50|14|Planetary motion and orbital integration|
 |21/May/2024|18:00-20:50|15|Classification of astronomical objects using machine learning|
 |28/May/2024|18:00-20:50|16|TBA|
+
+## Jupyter Notebook files
+
+- Session 00
+  - https://colab.research.google.com/drive/1MgWdLvLTigcYFEHJ4j0j4GCyrO72QI0K?usp=sharing
