@@ -1,6 +1,6 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/02/19 18:12:25 (UT+8) daisuke>
+Time-stamp: <2024/02/20 12:46:37 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
 
@@ -38,11 +38,13 @@ git clone https://github.com/kinoshitadaisuke/ncu_doing_astrophysics_using_pytho
 |16/Apr/2024|18:00-20:50|09|Distribution of asteroids, stars, and galaxies|
 |23/Apr/2024|18:00-20:50|10|Hubble diagram and expansion of the Universe|
 |30/Apr/2024|18:00-20:50|11|Estimating ages of star clusters|
-|05/Mar/2024|18:00-20:50|12|Periodicity analysis of astronomical time-series data|
-|07/May/2024|18:00-20:50|13|Source extraction and image alignment of astronomical images|
-|14/May/2024|18:00-20:50|14|Planetary motion and orbital integration|
-|21/May/2024|18:00-20:50|15|Classification of astronomical objects using machine learning|
-|28/May/2024|18:00-20:50|16|TBA|
+|07/May/2024|18:00-20:50|12|Periodicity analysis of astronomical time-series data|
+|14/May/2024|18:00-20:50|13|Source extraction and image alignment of astronomical images|
+|21/May/2024|18:00-20:50|14|Planetary motion and orbital integration|
+|28/May/2024|18:00-20:50|15|Classification of astronomical objects using machine learning|
+|04/Jun/2024|18:00-20:50|16|TBA|
+|11/Jun/2024|18:00-20:50|17|TBA|
+|18/Jun/2024|18:00-20:50|18|TBA|
 
 ## Jupyter Notebook files
 
