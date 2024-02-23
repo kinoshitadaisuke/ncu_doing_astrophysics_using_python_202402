@@ -1,14 +1,14 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/02/21 15:24:43 (UT+8) daisuke>
+# Time-stamp: <2024/02/23 13:46:26 (UT+8) daisuke>
 #
 
 # importing re module
 import re
 
 # making a pattern for regular expression
-pattern_type = re.compile ('M[.\d+][I][a-z*]')
+pattern_type = re.compile (r'M[.\d+][I][a-z*]')
 
 # catalogue file of BSC
 file_bsc = 'bsc.data'
