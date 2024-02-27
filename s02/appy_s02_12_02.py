@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/02/21 15:25:56 (UT+8) daisuke>
+# Time-stamp: <2024/02/27 09:01:08 (UT+8) daisuke>
 #
 
 # importing statistics module
@@ -45,6 +45,6 @@ median = statistics.median (dataset3)
 stddev = statistics.stdev (dataset3)
 
 # printing mean, median, and standard deviation
-print (f'mean of dataset3   = {mean}')
-print (f'median of dataset3 = {median}')
-print (f'stddev of dataset3 = {stddev}')
+print (f'mean of dataset3           = {mean:7.3f}')
+print (f'median of dataset3         = {median:7.3f}')
+print (f'stddev of dataset3         = {stddev:7.3f}')
