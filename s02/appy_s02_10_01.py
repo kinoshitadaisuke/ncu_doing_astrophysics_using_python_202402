@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/02/21 15:25:08 (UT+8) daisuke>
+# Time-stamp: <2024/02/27 08:54:11 (UT+8) daisuke>
 #
 
 # importing math module
@@ -39,7 +39,7 @@ print (f'  a         = {a}')
 print (f'  ceil (a)  = {a_ceil}')
 print (f'  {a_ceil} is the smallest integer greater than or equal to {a}.')
 print (f'  b         = {b}')
-print (f'  ceil (b) = {b_ceil}')
+print (f'  ceil (b)  = {b_ceil}')
 print (f'  {b_ceil} is the smallest integer greater than or equal to {b}.')
 print (f'')
 
@@ -50,7 +50,7 @@ b_trunc = math.trunc (b)
 # printing results
 print (f'Use of trunc () function:')
 print (f'  a         = {a}')
-print (f'  trunc (a)  = {a_trunc}')
+print (f'  trunc (a) = {a_trunc}')
 print (f'  {a_trunc} is the integer part of {a}.')
 print (f'  b         = {b}')
 print (f'  trunc (b) = {b_trunc}')
