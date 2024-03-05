@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/02/27 16:07:59 (UT+8) daisuke>
+# Time-stamp: <2024/03/05 11:37:42 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -12,14 +12,14 @@ a = numpy.array ([1.0, 1.0, 0.0])
 b = numpy.array ([-1.0, 3.0, 0.0])
 
 # printing a and b
-print (f'a = {a}')
-print (f'b = {b}')
+print (f'a     = {a}')
+print (f'b     = {b}')
 
 # dot product of two vectors
 dot = numpy.dot (a, b)
 
 # printing dot product
-print (f'dot = {dot}')
+print (f'dot   = {dot}')
 
 # inner product of two vectors
 inner = numpy.inner (a, b)
