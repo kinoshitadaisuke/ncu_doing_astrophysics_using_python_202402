@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/09/30 20:18:08 (CST) daisuke>
+# Time-stamp: <2024/03/06 10:21:25 (UT+8) daisuke>
 #
 
 # importing argparse module
