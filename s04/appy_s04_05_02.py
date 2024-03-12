@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:21:45 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 21:33:32 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,8 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Plot of logarithmic scale')
+descr  = 'making a log-log plot'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
