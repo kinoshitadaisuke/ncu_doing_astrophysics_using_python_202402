@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:22:13 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 21:48:25 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,7 +25,7 @@ import matplotlib.figure
 import matplotlib.dates
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Plotting date/time')
+parser = argparse.ArgumentParser (description='changing ticks')
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
