@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:03 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 23:50:13 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,7 +25,8 @@ import matplotlib.figure
 import matplotlib.dates
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Making HR diagram')
+descr  = 'making a HR diagram'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
