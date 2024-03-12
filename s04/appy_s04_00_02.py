@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:19:18 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 19:10:29 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -20,7 +20,8 @@ import numpy
 import matplotlib.pyplot
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='A sample Matplotlib code')
+descr  = 'A sample Matplotlib code using explicit axes interface #2'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='sample.png', \
