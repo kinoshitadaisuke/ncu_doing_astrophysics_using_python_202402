@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:20 (UT+8) daisuke>
+# Time-stamp: <2024/03/12 00:02:49 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='A plot of an ellipse')
+parser = argparse.ArgumentParser (description='plotting of an ellipse')
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
