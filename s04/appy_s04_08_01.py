@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:22:56 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 23:48:47 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -20,7 +20,8 @@ import gzip
 import numpy
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Reading Bright Star Catalogue')
+descr  = 'reading Bright Star Catalogue'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-m', '--mag', type=float, default=6.0, \
