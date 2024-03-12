@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:22:32 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 23:35:02 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Making a histogram')
+parser = argparse.ArgumentParser (description='making a histogram')
 
 # adding arguments
 parser.add_argument ('-a', '--binmin', type=float, default=0.0, \
