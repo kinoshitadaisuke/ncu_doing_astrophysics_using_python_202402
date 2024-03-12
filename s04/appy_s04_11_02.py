@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:24:13 (UT+8) daisuke>
+# Time-stamp: <2024/03/06 10:24:06 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -31,7 +31,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-descr  = f'3D structure of inner solar system #3'
+descr  = f'3D structure of inner solar system #2'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
@@ -43,8 +43,8 @@ parser.add_argument ('-n', '--nframe', type=int, default=600, \
                      help='number of frames (default: 600)')
 parser.add_argument ('-s', '--step', type=int, default=6, \
                      help='step size of animation in hr (default: 6)')
-parser.add_argument ('-d', '--dir', default='solsys_3d3', \
-                     help='directory to put output files (default: solsys_3d3)')
+parser.add_argument ('-d', '--dir', default='solsys_3d2', \
+                     help='directory to put output files (default: solsys_3d2)')
 
 # parsing arguments
 args = parser.parse_args ()
@@ -156,46 +156,14 @@ def make_sphere (x_c, y_c, z_c, radius, colour):
     return (sphere)
 
 # initial value of 'elev' angle
-el0 = 90.0
+el = 30.0
 
 # initial value of 'azim' angle
-az0 = 0.0
+az = 0.0
 
 for i in range (nframe):
     # clearing previous axes
     ax.cla ()
-
-    # camera viewing angle
-    if (i < 200):
-        el = el0
-        az = az0
-    elif ( (i >= 200) and (i < 1400) ):
-        el = el0 - (i - 200) * 0.1
-        az = az0
-    elif ( (i >= 1400) and (i < 1600) ):
-        el = -30.0
-        az = az0
-    elif ( (i >= 1600) and (i < 1900) ):
-        el = -30 + (i - 1600) * 0.1
-        az = az0
-    elif ( (i >= 1900) and (i < 2100) ):
-        el = 0.0
-        az = az0
-    elif ( (i >= 2100) and (i < 2400) ):
-        el = (i - 2100) * 0.1
-        az = az0
-    elif ( (i >= 2400) and (i < 2600) ):
-        el = 30.0
-        az = az0
-    elif ( (i >= 2600) and (i < 2900) ):
-        el = 30.0 + (i - 2600) * 0.1
-        az = az0
-    elif ( (i >= 2900) and (i < 3000) ):
-        el = 60.0
-        az = az0
-    else:
-        el = 60.0
-        az = 0.0
     
     # time t
     t = t_start + i * step
