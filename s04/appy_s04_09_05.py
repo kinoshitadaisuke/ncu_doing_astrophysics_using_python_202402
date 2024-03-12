@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:41 (UT+8) daisuke>
+# Time-stamp: <2024/03/12 00:20:41 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -28,7 +28,8 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Positions of Sun and planets')
+descr  = 'making an animation of orbital motion of the Sun and planets'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-t', '--time', default='2000-01-01T12:00:00', \
