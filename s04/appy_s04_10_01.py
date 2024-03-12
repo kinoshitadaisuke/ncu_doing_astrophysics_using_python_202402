@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:55 (UT+8) daisuke>
+# Time-stamp: <2024/03/12 00:31:17 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-descr  = 'Making a 3D line plot'
+descr  = 'making a 3D line plot'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
