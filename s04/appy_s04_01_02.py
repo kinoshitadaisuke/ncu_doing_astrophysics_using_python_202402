@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:19:48 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 19:17:55 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='A sample Matplotlib code')
+parser = argparse.ArgumentParser (description='plotting a sine curve')
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
@@ -71,7 +71,7 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax = fig.add_subplot (111)
 
 # making a plot using object-oriented interface
-ax.plot (data_x, data_y, label='$f(x) = \sin (x)$')
+ax.plot (data_x, data_y, label=r'$f(x) = \sin (x)$')
 
 # setting ranges of x-axis and y-axis
 ax.set_xlim (0.0, +720.0)
