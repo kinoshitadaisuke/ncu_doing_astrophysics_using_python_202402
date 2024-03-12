@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:20:44 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 21:09:21 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,7 +21,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Plotting a data point')
+parser = argparse.ArgumentParser (description='plotting a data point')
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
