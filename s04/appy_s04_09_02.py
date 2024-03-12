@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:29 (UT+8) daisuke>
+# Time-stamp: <2024/03/12 00:09:58 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -14,7 +14,8 @@ import astropy.time
 import astropy.units
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Positions of Sun and planets')
+descr  = 'obtaining positions of the Sun and planets'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-t', '--time', default='2000-01-01T12:00:00', \
@@ -29,7 +30,7 @@ datetime = args.time
 # setting for solar system ephemeris
 astropy.coordinates.solar_system_ephemeris.set ('jpl')
 
-# time t = 2023-10-02T00:00:00 (UTC)
+# time t in UTC
 t = astropy.time.Time (datetime, format='isot', scale='utc')
 
 # getting positions of Sun, Mercury, Venus, Earth, and Mars
