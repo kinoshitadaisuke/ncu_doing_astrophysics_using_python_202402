@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:22:28 (UT+8) daisuke>
+# Time-stamp: <2024/03/11 23:32:35 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -17,7 +17,7 @@ import sys
 import numpy
 
 # constructing a parser object
-descr  = 'Opening a file and reading data'
+descr  = 'opening a file and reading data'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
