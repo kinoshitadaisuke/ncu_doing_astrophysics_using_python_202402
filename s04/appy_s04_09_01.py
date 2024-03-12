@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/06 10:23:24 (UT+8) daisuke>
+# Time-stamp: <2024/03/12 00:04:23 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -22,7 +22,7 @@ import matplotlib.figure
 import matplotlib.animation
 
 # constructing a parser object
-parser = argparse.ArgumentParser (description='Making an simple animation')
+parser = argparse.ArgumentParser (description='making an simple animation')
 
 # adding arguments
 parser.add_argument ('-o', '--output', default='output.png', \
