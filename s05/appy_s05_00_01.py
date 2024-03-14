@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/10/04 15:27:34 (CST) daisuke>
+# Time-stamp: <2024/03/13 14:55:47 (UT+8) daisuke>
 #
 
 # importing scipy module
