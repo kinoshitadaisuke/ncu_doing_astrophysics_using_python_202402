@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:57:28 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 09:17:28 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -11,7 +11,7 @@ import argparse
 import scipy.stats
 
 # constructing a parser object
-descr  = 'finding kurtosis of distribution'
+descr  = 'finding kurtosis of distribution #2'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
