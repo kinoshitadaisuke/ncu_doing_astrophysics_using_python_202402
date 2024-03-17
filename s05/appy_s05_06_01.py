@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:59:28 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 19:20:48 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -29,8 +29,8 @@ import matplotlib.animation
 #
 
 # initialising a parser
-desc   = 'solving equation of motion for a planet around a star'
-parser = argparse.ArgumentParser (description=desc)
+descr  = 'solving equation of motion for a planet around a star'
+parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-x0', '--x0', type=float, default=0.0,
