@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:58:31 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 18:27:25 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,7 +25,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-descr  = 'quadratic interpolation'
+descr  = 'carrying quadratic interpolation for a curve'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
@@ -78,7 +78,7 @@ data_x = numpy.linspace (-10.0, 10.0, 21)
 data_y = a * numpy.sin (data_x - b) + c
 
 # printing data_x and data_y
-print (f'line: y = {a} * sin (x - {b}) + {c}')
+print (f'curve: y = {a} * sin (x - {b}) + {c}')
 print (f'  data_x = {data_x}')
 print (f'  data_y = {data_y}')
 
