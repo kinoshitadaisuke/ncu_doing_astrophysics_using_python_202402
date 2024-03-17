@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:59:24 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 18:46:02 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,7 +25,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-descr  = 'solving a differential equation'
+descr  = 'solving a differential equation dy/dx = -ky'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
