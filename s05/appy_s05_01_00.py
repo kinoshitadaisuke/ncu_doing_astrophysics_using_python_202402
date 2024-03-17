@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:56:35 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 08:48:11 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -11,7 +11,7 @@ import argparse
 import scipy.stats
 
 # constructing a parser object
-descr  = 'generating a set of random numbers of uniform distribution'
+descr  = 'generating random numbers of uniform distribution between 0 and 1'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
