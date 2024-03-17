@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 15:00:52 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 20:23:22 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -24,7 +24,7 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # constructing a parser object
-descr  = 'Plotting synthetic data'
+descr  = 'Plotting synthetic data and errors'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
