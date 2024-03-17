@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:58:24 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 18:09:38 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,7 +25,7 @@ import matplotlib.backends.backend_agg
 import matplotlib.figure
 
 # constructing a parser object
-descr  = 'quadratic interpolation'
+descr  = 'carrying out quadratic interpolation for a curve'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
@@ -78,7 +78,7 @@ data_x = numpy.linspace (-10.0, 10.0, 11)
 data_y = a * (data_x - b)**2 + c
 
 # printing data_x and data_y
-print (f'line: y = {a} * (x - {b})**2 + {c}')
+print (f'curve: y = {a} * (x - {b})**2 + {c}')
 print (f'  data_x = {data_x}')
 print (f'  data_y = {data_y}')
 
