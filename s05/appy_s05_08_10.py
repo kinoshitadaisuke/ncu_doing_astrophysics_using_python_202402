@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 15:01:26 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 20:33:00 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -20,7 +20,7 @@ import numpy
 import scipy.stats
 
 # constructing a parser object
-descr  = 'Synthetic data generation'
+descr  = 'Generation of synthetic data with errors'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
