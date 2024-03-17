@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:58:11 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 17:58:34 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -15,7 +15,7 @@ import scipy
 import scipy.interpolate
 
 # constructing a parser object
-descr  = 'linear interpolation'
+descr  = 'carrying out linear interpolation'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
