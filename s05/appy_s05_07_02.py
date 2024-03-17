@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 14:59:56 (UT+8) daisuke>
+# Time-stamp: <2024/03/17 20:12:24 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -108,7 +108,7 @@ ax.set_ylim (None,  (numpy.abs (a) + d) * 1.3)
 # plotting data
 ax.plot (data_x, data_y, \
          linestyle='-', linewidth=3.0, color='blue', \
-         label=f'$f(x)={a} \sin ({b} x + {c}) + {d}$')
+         label=f'$f(x)={a} \\sin ({b} x + {c}) + {d}$')
 
 # legend
 ax.legend ()
