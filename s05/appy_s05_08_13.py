@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/13 15:01:40 (UT+8) daisuke>
+# Time-stamp: <2024/03/19 08:43:55 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -25,11 +25,11 @@ parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-a', type=float, default=1.0, \
-                     help='a of y=a(x-b)+c (default: 1.0)')
+                     help='a of y=a(x-b)^2+c (default: 1.0)')
 parser.add_argument ('-b', type=float, default=0.0, \
-                     help='b of y=a(x-b)+c (default: 1.0)')
+                     help='b of y=a(x-b)^2+c (default: 1.0)')
 parser.add_argument ('-c', type=float, default=0.0, \
-                     help='c of y=a(x-b)+c (default: 1.0)')
+                     help='c of y=a(x-b)^2+c (default: 1.0)')
 parser.add_argument ('-e', type=float, default=1.0, \
                      help='std. dev. of error (default: 1)')
 parser.add_argument ('-n', type=int, default=1, \
