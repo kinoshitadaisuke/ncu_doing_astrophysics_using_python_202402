@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/17 20:52:13 (UT+8) daisuke>
+# Time-stamp: <2024/03/19 15:17:04 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -135,4 +135,4 @@ ax.plot (fitted_x, fitted_y, \
 ax.legend ()
 
 # saving file
-fig.savefig (file_output, dpi=225)
+fig.savefig (file_output, dpi=100)
