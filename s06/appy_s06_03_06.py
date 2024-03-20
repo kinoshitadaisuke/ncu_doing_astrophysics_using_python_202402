@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/10/19 16:27:46 (CST) daisuke>
+# Time-stamp: <2024/03/20 22:06:54 (UT+8) daisuke>
 #
 
 # importing sqlite module
