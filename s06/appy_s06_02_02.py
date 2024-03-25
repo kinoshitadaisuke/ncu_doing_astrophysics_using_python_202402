@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/20 22:06:13 (UT+8) daisuke>
+# Time-stamp: <2024/03/25 14:48:13 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -11,7 +11,7 @@ import gzip
 import sys
 
 # catalogue file name
-file_catalogue = 'bsc5.gz'
+file_catalogue = 'bsc5.data.gz'
 
 # opening catalogue file
 with gzip.open (file_catalogue, 'rb') as fh:
