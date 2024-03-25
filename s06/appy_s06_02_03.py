@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/20 22:06:19 (UT+8) daisuke>
+# Time-stamp: <2024/03/25 14:49:53 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -11,7 +11,7 @@ import gzip
 import sys
 
 # input catalogue file name
-file_catalogue = 'bsc5.gz'
+file_catalogue = 'bsc5.data.gz'
 
 # output SQL file name
 file_sql = 'bsc5_makedb.sql'
