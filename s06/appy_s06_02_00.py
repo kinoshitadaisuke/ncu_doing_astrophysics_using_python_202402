@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/20 22:05:59 (UT+8) daisuke>
+# Time-stamp: <2024/03/25 14:44:04 (UT+8) daisuke>
 #
 
 # importing urllib module
@@ -17,7 +17,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 url_data = 'https://cdsarc.cds.unistra.fr/ftp/V/50/catalog.gz'
 
 # output file name
-file_output = 'bsc5.gz'
+file_output = 'bsc5.data.gz'
 
 # printing status
 print (f'Now, fetching {url_data}...')
