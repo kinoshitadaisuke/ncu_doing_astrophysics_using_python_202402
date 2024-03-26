@@ -1,0 +1,157 @@
+SQLITE3(1)                  General Commands Manual                 SQLITE3(1)
+
+NNAAMMEE
+     ssqqlliittee33 - A command line interface for SQLite version 3
+
+SSYYNNOOPPSSIISS
+     ssqqlliittee33 [_o_p_t_i_o_n_s] [_d_a_t_a_b_a_s_e_f_i_l_e] [_S_Q_L]
+
+DDEESSCCRRIIPPTTIIOONN
+     ssqqlliittee33 is a terminal-based front-end to the SQLite library that can
+     evaluate queries interactively and display the results in multiple
+     formats.  ssqqlliittee33 can also be used within shell scripts and other
+     applications to provide batch processing features.
+
+     To start a ssqqlliittee33 interactive session, invoke the ssqqlliittee33 command and
+     optionally provide the name of a database file.  If the database file
+     does not exist, it will be created.  If the database file does exist, it
+     will be opened.
+
+     For example, to create a new database file named "mydata.db", create a
+     table named "memos" and insert a couple of records into that table:
+
+           $ sqlite3 mydata.db
+           SQLite version 3.1.3
+           Enter ".help" for instructions
+           sqlite> create table memos(text, priority INTEGER);
+           sqlite> insert into memos values('deliver project description', 10);
+           sqlite> insert into memos values('lunch with Christine', 100);
+           sqlite> select * from memos;
+           deliver project description|10
+           lunch with Christine|100
+           sqlite>
+
+     If no database name is supplied, the _A_T_T_A_C_H sql command can be used to
+     attach to existing or create new database files.  _A_T_T_A_C_H can also be used
+     to attach to multiple databases within the same interactive session.
+     This is useful for migrating data between databases, possibly changing
+     the schema along the way.
+
+     Optionally, a SQL statement or set of SQL statements can be supplied as a
+     single argument.  Multiple statements should be separated by semi-colons.
+
+     For example:
+
+           $ sqlite3 -line mydata.db 'select * from memos where priority > 20;'
+               text = lunch with Christine
+               priority = 100
+
+   SSQQLLIITTEE MMEETTAA--CCOOMMMMAANNDDSS
+     The interactive interpreter offers a set of meta-commands that can be
+     used to control the output format, examine the currently attached
+     database files, or perform administrative operations upon the attached
+     databases (such as rebuilding indices).  Meta-commands are always
+     prefixed with a dot ".".
+
+     A list of available meta-commands can be viewed at any time by issuing
+     the '.help' command.  For example:
+
+           sqlite> .help
+           .databases             List names and files of attached databases
+           .dump ?TABLE? ...      Dump the database in an SQL text format
+           .echo ON|OFF           Turn command echo on or off
+           .exit                  Exit this program
+           .explain ON|OFF        Turn output mode suitable for EXPLAIN on or off.
+           .header(s) ON|OFF      Turn display of headers on or off
+           .help                  Show this message
+           .import FILE TABLE     Import data from FILE into TABLE
+           .indices TABLE         Show names of all indices on TABLE
+           .mode MODE ?TABLE?     Set output mode where MODE is one of:
+                                    csv      Comma-separated values
+                                    column   Left-aligned columns.  (See .width)
+                                    html     HTML <table> code
+                                    insert   SQL insert statements for TABLE
+                                    line     One value per line
+                                    list     Values delimited by .separator string
+                                    tabs     Tab-separated values
+                                    tcl      TCL list elements
+           .nullvalue STRING      Print STRING in place of NULL values
+           .output FILENAME       Send output to FILENAME
+           .output stdout         Send output to the screen
+           .prompt MAIN CONTINUE  Replace the standard prompts
+           .quit                  Exit this program
+           .read FILENAME         Execute SQL in FILENAME
+           .schema ?TABLE?        Show the CREATE statements
+           .separator STRING      Change separator used by output mode and .import
+           .show                  Show the current values for various settings
+           .tables ?PATTERN?      List names of tables matching a LIKE pattern
+           .timeout MS            Try opening locked tables for MS milliseconds
+           .width NUM NUM ...     Set column widths for "column" mode
+           sqlite>
+
+OOPPTTIIOONNSS
+     ssqqlliittee33 has the following options:
+
+     --iinniitt _f_i_l_e  Read and execute commands from _f_i_l_e, which can contain a mix
+                 of SQL statements and meta-commands.
+
+     --eecchhoo       Print commands before execution.
+
+     --hheeaaddeerr     Turn headers on.
+
+     --nnoohheeaaddeerr   Turn headers off.
+
+     --ccoolluummnn     Query results will be displayed in a table like form, using
+                 whitespace characters to separate the columns and align the
+                 output.
+
+     --hhttmmll       Query results will be output as simple HTML tables.
+
+     --lliinnee       Query results will be displayed with one value per line, rows
+                 separated by a blank line.  Designed to be easily parsed by
+                 scripts or other programs
+
+     --lliisstt       Query results will be displayed with the separator (|, by
+                 default) character between each field value.
+
+     --sseeppaarraattoorr _s_e_p_a_r_a_t_o_r
+                 Set output field separator.  Default is "|".
+
+     --nnuullllvvaalluuee _s_t_r_i_n_g
+                 Set _s_t_r_i_n_g used to represent NULL values.  Default is "\"
+                 (empty string).
+
+     --vveerrssiioonn    Show SQLite version.
+
+     --hheellpp       Show help on options and exit.
+
+   IINNIITT FFIILLEE
+     ssqqlliittee33 reads an initialization file to set the configuration of the
+     interactive environment.  Throughout initialization, any previously
+     specified setting can be overridden.  The sequence of initialization is
+     as follows:
+
+     1.   The default configuration is established as follows:
+
+                mode            = LIST
+                separator       = "|"
+                main prompt     = "sqlite> "
+                continue prompt = "   ...> "
+
+     2.   If the file _~_/_._s_q_l_i_t_e_r_c exists, it is processed first.  can be found
+          in the user's home directory, it is read and processed.  It should
+          generally only contain meta-commands.
+
+     3.   If the --iinniitt option is present, the specified file is processed.
+
+     4.   All other command line options are processed.
+
+SSEEEE AALLSSOO
+     hhttttpp::////wwwwww..ssqqlliittee..oorrgg//
+
+AAUUTTHHOORRSS
+     This manual page was originally written by Andreas Rottmann
+     <rotty@debian.org>, for the Debian GNU/Linux system (but may be used by
+     others).  It was subsequently revised by Bill Bumgarner <bbum@mac.com>.
+
+NetBSD 10.0_RC3                December 16, 2012               NetBSD 10.0_RC3
