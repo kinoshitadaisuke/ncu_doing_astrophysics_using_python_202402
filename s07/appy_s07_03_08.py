@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:55:32 (UT+8) daisuke>
+# Time-stamp: <2024/04/02 10:47:07 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -19,7 +19,7 @@ longitude = '120d52m25s'
 latitude  = '+23d28m07s'
 
 # t0
-t0 = astropy.time.Time ('2023-10-30 10:00:00', format='iso', scale='utc', \
+t0 = astropy.time.Time ('2024-04-02 10:00:00', format='iso', scale='utc', \
                         location=(longitude, latitude) )
 
 # times
