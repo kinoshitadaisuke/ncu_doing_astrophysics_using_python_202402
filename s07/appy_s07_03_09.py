@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:55:37 (UT+8) daisuke>
+# Time-stamp: <2024/04/02 10:49:03 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import astropy.units
 u_hr = astropy.units.hr
 
 # t_utc
-t_utc = astropy.time.Time ('2023-10-30 09:00:00', format='iso', scale='utc')
+t_utc = astropy.time.Time ('2024-04-02 08:00:00', format='iso', scale='utc')
 
 # timezone
 timezone_taiwan = astropy.time.TimezoneInfo (utc_offset=+8.0 * u_hr)
