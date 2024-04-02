@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:56:24 (UT+8) daisuke>
+# Time-stamp: <2024/04/02 11:12:30 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -16,13 +16,13 @@ astropy.coordinates.solar_system_ephemeris.set ('de440')
 u_m = astropy.units.m
 
 # date/time in UTC
-t_str = '2023-10-28 21:00:00'
+t_str = '2024-04-08 18:42:00'
 t_utc = astropy.time.Time (t_str, format='iso', scale='utc')
 
-# location of observer: NCU main campus
-longitude = '121d11m12s'
-latitude  = '+24d58m12s'
-height    = 151.6 * u_m
+# location of observer: Dallas, USA
+longitude = '-96d48m32s'
+latitude  = '+32d46m45s'
+height    = 0.0 * u_m
 observer  = astropy.coordinates.EarthLocation (longitude, latitude, height)
 
 # getting position of the Sun
