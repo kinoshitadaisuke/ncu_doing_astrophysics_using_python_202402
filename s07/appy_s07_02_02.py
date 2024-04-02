@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:53:47 (UT+8) daisuke>
+# Time-stamp: <2024/04/02 09:08:28 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -38,7 +38,15 @@ stars = astropy.table.QTable ([hr, name, vmag, bv, parallax, sptype], \
                                     'parallax': 'parallax in arcsec', \
                                     'sptype': 'spectral type'} )
 
-# printing column names of table
-print (f'stars.colnames = {stars.colnames}')
+# getting column names
+colnames = stars.colnames
+
+# the other way to get column names
+columns = stars.columns
+
+# printing table and column names
+print (f'{stars}')
 print ()
-print (f'stars.columns = {stars.columns}')
+print (f'stars.colnames = {colnames}')
+print ()
+print (f'stars.columns  = {columns}')
