@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:52:28 (UT+8) daisuke>
+# Time-stamp: <2024/04/01 22:35:26 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -14,7 +14,7 @@ u_sec = astropy.units.s
 t = 900.0 * u_sec
 
 # printing t
-print (f't = {t}')
+print (f't          = {t}')
 
 # value and unit of t
 print (f'value of t = {t.value}')
