@@ -1,17 +1,17 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/03/28 08:55:16 (UT+8) daisuke>
+# Time-stamp: <2024/04/02 10:44:19 (UT+8) daisuke>
 #
 
 # importing astropy module
 import astropy.time
 
 # time t1
-t1 = astropy.time.Time ('2020-01-01 00:00:00', format='iso', scale='utc')
+t1 = astropy.time.Time ('2024-01-01 00:00:00', format='iso', scale='utc')
 
 # time t2
-t2 = astropy.time.Time ('2021-01-01 00:00:00', format='iso', scale='utc')
+t2 = astropy.time.Time ('2025-01-01 00:00:00', format='iso', scale='utc')
 
 # time between t1 and t2
 delta_t = t2 - t1
