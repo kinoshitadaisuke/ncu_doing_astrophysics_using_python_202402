@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/05 15:45:18 (CST) daisuke>
+# Time-stamp: <2024/04/04 20:26:30 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -19,10 +19,10 @@ import matplotlib.backends.backend_agg
 file_input = 'cmb_cobe.data'
 
 # output file name
-file_output = 'ai2023_s08_04_03.png'
+file_output = 'appy_s08_04_03.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 #
 # constants
