@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/05 09:26:46 (CST) daisuke>
+# Time-stamp: <2024/04/04 20:24:42 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,10 +15,10 @@ import matplotlib.backends.backend_agg
 file_input = 'solar_spec.data'
 
 # figure file name
-file_output = 'ai2023_s08_02_01.png'
+file_output = 'appy_s08_02_01.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # initialisation of numpy arrays for storing data
 wl         = numpy.array ([])
