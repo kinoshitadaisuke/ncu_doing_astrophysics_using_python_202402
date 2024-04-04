@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/06 12:54:32 (CST) daisuke>
+# Time-stamp: <2024/04/04 20:22:06 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,10 +16,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # output file name
-file_output = 'ai2023_s08_01_01.png'
+file_output = 'appy_s08_01_01.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # units
 unit_K  = astropy.units.K
