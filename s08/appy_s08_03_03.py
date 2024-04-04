@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/05 14:44:03 (CST) daisuke>
+# Time-stamp: <2024/04/04 20:25:25 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -22,10 +22,10 @@ import matplotlib.backends.backend_agg
 file_input = 'hd61005_spec.data'
 
 # output file name
-file_output = 'ai2023_s08_03_03.png'
+file_output = 'appy_s08_03_03.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # constants
 c = astropy.constants.c
