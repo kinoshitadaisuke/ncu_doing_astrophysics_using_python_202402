@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:24:53 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 11:13:57 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -76,8 +76,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Wavelength [nm]')
-ax.set_ylabel ('Irradiance [W m$^{-2}$ nm$^{-1}$]')
+ax.set_xlabel (r'Wavelength [nm]')
+ax.set_ylabel (r'Irradiance [W m$^{-2}$ nm$^{-1}$]')
 
 # axes
 ax.set_xlim (100, 10000)
