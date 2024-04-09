@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:26:21 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 11:27:59 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -62,8 +62,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Wavenumber [cm$^{-1}$]')
-ax.set_ylabel ('Intensity [MJy sr$^{-1}$]')
+ax.set_xlabel (r'Wavenumber [cm$^{-1}$]')
+ax.set_ylabel (r'Intensity [MJy sr$^{-1}$]')
 
 # axes
 ax.set_xscale ('log')
