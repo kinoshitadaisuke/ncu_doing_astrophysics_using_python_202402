@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:21:37 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:46:07 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -47,12 +47,12 @@ T = numpy.logspace (0.0, 8.0, num=9, dtype=numpy.longdouble)
 print (f'Temperature:')
 print (f'  T = {T} K')
 
-# range of frequency (from 10**0 Hz to 10**16 Hz)
+# range of frequency (from 10**2 Hz to 10**20 Hz)
 frequency_min = 2.0
 frequency_max = 20.0
 
 # frequency in Hz
-frequency = numpy.logspace (frequency_min, frequency_max, num=16001, \
+frequency = numpy.logspace (frequency_min, frequency_max, num=18001, \
                             dtype=numpy.longdouble)
 
 # making objects "fig", "canvas", and "ax"
@@ -61,8 +61,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Frequency [Hz]')
-ax.set_ylabel ('Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
+ax.set_xlabel (r'Frequency [Hz]')
+ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
 
 # axes
 ax.set_xscale ('log')
@@ -74,39 +74,39 @@ ax.set_ylim (10**-30, 10**6)
 c   = scipy.constants.physical_constants['speed of light in vacuum'][0]
 ax2 = ax.secondary_xaxis (location='top', \
                           functions=(lambda x: c/x, lambda x: c/x) )
-ax2.set_xlabel ('Wavelength [m]')
+ax2.set_xlabel (r'Wavelength [m]')
 
 # showing gamma-ray region
 ax.fill_between (numpy.array ([3*10**19, 10**21], dtype=numpy.longdouble), \
                  10**-30, 10**8, \
                  color='magenta', alpha=0.1)
-ax.text (x=4*10**19, y=10**-29, s='$\gamma$-ray')
+ax.text (x=4*10**19, y=10**-29, s=r'$\gamma$-ray')
 
 # showing X-ray region
 ax.fill_between (numpy.array ([3*10**16, 3*10**19], dtype=numpy.longdouble), \
                  10**-30, 10**8, \
                  color='cyan', alpha=0.1)
-ax.text (x=3*10**17, y=10**-29, s='X-ray')
+ax.text (x=3*10**17, y=10**-29, s=r'X-ray')
 
 # showing UV region
 ax.fill_between ([10**15, 3*10**16], 10**-30, 10**8, \
                  color='violet', alpha=0.1)
-ax.text (x=2*10**15, y=10**-29, s='UV')
+ax.text (x=2*10**15, y=10**-29, s=r'UV')
 
 # showing visible region
 ax.fill_between ([3*10**14, 10**15], 10**-30, 10**8, \
                  color='green', alpha=0.1)
-ax.text (x=10**14, y=3*10**-28, s='Visible')
+ax.text (x=10**14, y=3*10**-28, s=r'Visible')
 
 # showing IR region
 ax.fill_between ([10**12, 3*10**14], 10**-30, 10**8, \
                  color='red', alpha=0.1)
-ax.text (x=10**13, y=10**-29, s='IR')
+ax.text (x=10**13, y=10**-29, s=r'IR')
 
 # showing radio region
 ax.fill_between ([10**0, 10**12], 10**-30, 10**8, \
                  color='yellow', alpha=0.1)
-ax.text (x=10**8, y=10**-29, s='Radio')
+ax.text (x=10**8, y=10**-29, s=r'Radio')
 
 # plotting data
 for i in range (len (T)):
