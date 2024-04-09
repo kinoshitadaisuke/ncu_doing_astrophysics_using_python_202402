@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:18:31 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:13:30 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -69,8 +69,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Wavelength [$\mu$m]')
-ax.set_ylabel ('Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
+ax.set_xlabel (r'Wavelength [$\mu$m]')
+ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-3}$]')
 
 # axes
 ax.set_xlim (0.03, 5.0)
