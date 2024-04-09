@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:22:18 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:50:44 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -73,7 +73,7 @@ c   = astropy.constants.c
 c_v = c.value
 ax2 = ax.secondary_xaxis (location='top', \
                           functions=(lambda x: c_v/x, lambda x: c_v/x) )
-ax2.set_xlabel ('Wavelength [m]')
+ax2.set_xlabel (r'Wavelength [m]')
 
 # plotting data
 ax.plot (frequency_Hz, bb_data, \
