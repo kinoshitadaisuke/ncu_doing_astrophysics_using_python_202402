@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:20:37 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:23:56 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -69,8 +69,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Frequency [Hz]')
-ax.set_ylabel ('Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
+ax.set_xlabel (r'Frequency [Hz]')
+ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
 
 # axes
 ax.set_xscale ('log')
