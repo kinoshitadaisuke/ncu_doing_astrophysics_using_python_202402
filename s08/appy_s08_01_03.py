@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:22:33 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:52:12 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -74,7 +74,7 @@ c_v = c.value
 ax2 = ax.secondary_xaxis (location='top', \
                           functions=(lambda x: c_v/x * 10**6, \
                                      lambda x: c_v/x * 10**-6) )
-ax2.set_xlabel ('Wavelength [$\mu$m]')
+ax2.set_xlabel (r'Wavelength [$\mu$m]')
 
 # plotting data
 ax.plot (frequency_Hz, bb_data, \
