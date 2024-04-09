@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:25:43 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 11:22:05 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -164,8 +164,8 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Wavelength [$\mu$m]')
-ax.set_ylabel ('Flux [Jy]')
+ax.set_xlabel (r'Wavelength [$\mu$m]')
+ax.set_ylabel (r'Flux [Jy]')
 
 # axes
 ax.set_xscale ('log')
