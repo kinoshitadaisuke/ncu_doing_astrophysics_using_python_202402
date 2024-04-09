@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/04 20:20:49 (UT+8) daisuke>
+# Time-stamp: <2024/04/09 10:31:59 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -47,12 +47,12 @@ T = 5800.0
 print (f'Temperature:')
 print (f'  T = {T} K')
 
-# range of frequency (from 10**0 Hz to 10**16 Hz)
-frequency_min = 0.0
+# range of frequency (from 10**2 Hz to 10**16 Hz)
+frequency_min = 2.0
 frequency_max = 16.0
 
 # frequency in Hz
-frequency = numpy.logspace (frequency_min, frequency_max, num=16001)
+frequency = numpy.logspace (frequency_min, frequency_max, num=14001)
 
 # T = 5800 K blackbody spectrum
 bb_5800 = bb_nu (frequency, T)
@@ -69,20 +69,20 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # labels
-ax.set_xlabel ('Frequency [Hz]')
-ax.set_ylabel ('Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
+ax.set_xlabel (r'Frequency [Hz]')
+ax.set_ylabel (r'Specific Intensity [W sr$^{-1}$ m$^{-2}$ Hz$^{-1}$]')
 
 # axes
 ax.set_xscale ('log')
 ax.set_yscale ('log')
-ax.set_xlim (10**1, 10**18)
+ax.set_xlim (10**2, 10**17)
 ax.set_ylim (10**-30, 10**-3)
 
 # make secondary X-axis
 c   = scipy.constants.physical_constants['speed of light in vacuum'][0]
 ax2 = ax.secondary_xaxis (location='top', \
                           functions=(lambda x: c/x, lambda x: c/x) )
-ax2.set_xlabel ('Wavelength [m]')
+ax2.set_xlabel (r'Wavelength [m]')
 
 # plotting data
 ax.plot (frequency, bb_5800, \
