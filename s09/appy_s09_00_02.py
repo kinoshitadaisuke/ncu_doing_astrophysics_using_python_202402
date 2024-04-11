@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/08 07:31:02 (Taiwan_Standard_Time_UT+8) daisuke>
+# Time-stamp: <2024/04/11 14:36:39 (UT+8) daisuke>
 #
 
 # importing gzip module
