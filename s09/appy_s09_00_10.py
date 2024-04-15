@@ -1,96 +1,69 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:37:19 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 19:57:46 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # importing astropy module
+import astropy.coordinates
 import astropy.time
+import astropy.units
 
 # importing astroquery module
 import astroquery.jplhorizons
 
-# importing matplotlib module
-import matplotlib.figure
-import matplotlib.backends.backend_agg
-
 # output file name
-file_output = 'ai2023_s09_00_10.png'
-
-# resolution in DPI
-resolution_dpi = 225
+file_output = 'asteroids_000100.data'
 
 # date/time
-date = astropy.time.Time ('2024-01-01 00:00:00')
+date = astropy.time.Time ('2024-05-01 00:00:00')
 
 # number of asteroids to get position
 n_asteroids = 100
 
-# making empty numpy arrays for storing data
-data_ra_hr   = numpy.array ([])
-data_dec_deg = numpy.array ([])
+# opening file for writing
+with open (file_output, 'w') as fh:
+    # writing a header into output file
+    fh.write (f'#\n')
+    fh.write (f'# Asteroid positions\n')
+    fh.write (f'#\n')
+    fh.write (f'#  Date/Time           : {date}\n')
+    fh.write (f'#  Number of asteroids : {n_asteroids}\n')
+    fh.write (f'#  Output data file    : {file_output}\n')
+    fh.write (f'#\n')
+    fh.write (f'#  Data file format\n')
+    fh.write (f'#   1st column : RA in deg\n')
+    fh.write (f'#   2nd column : Dec in deg\n')
+    fh.write (f'#   3th column : Ecliptic Longitude in deg\n')
+    fh.write (f'#   4th column : Ecliptic Latitude in deg\n')
+    fh.write (f'#   5th column : Galactic Longitude in deg\n')
+    fh.write (f'#   6th column : Galactic Latitude in deg\n')
+    fh.write (f'#   7th column : absolute magnitude in mag\n')
+    fh.write (f'#   8th column : apparent V-band magnitude in mag\n')
+    fh.write (f'#   after "#"  : asteroid name\n')
+    fh.write (f'#\n')
+    
+    # processing for each asteroid
+    for i in range (1, n_asteroids + 1):
+        # set-up a query for JPL Horizons
+        query = astroquery.jplhorizons.Horizons (id=f"{i}", \
+                                                 id_type='smallbody', \
+                                                 epochs=date.jd)
 
-# printing header
-print (f"Positions of asteroids on {date}:")
+        # fetching ephemeris of asteroid
+        eph = query.ephemerides ()
 
-# processing for each asteroid
-for i in range (1, n_asteroids + 1):
-    # set-up a query for JPL Horizons
-    query = astroquery.jplhorizons.Horizons (id=f"{i}", \
-                                             id_type='smallbody', \
-                                             epochs=date.jd)
+        # writing RA and Dec of asteroid into output file
+        data = f'{eph["RA"][0]:9.5f}  {eph["DEC"][0]:+9.5f}' \
+            + f' {eph["EclLon"][0]:9.5f}  {eph["EclLat"][0]:+9.5f}' \
+            + f' {eph["GlxLon"][0]:9.5f}  {eph["GlxLat"][0]:+9.5f}' \
+            + f' {eph["H"][0]:9.5f}  {eph["V"][0]:9.5f}' \
+            + f' # {eph["targetname"][0]:32s}\n'
+        fh.write (data)
 
-    # fetching ephemeris of asteroid
-    eph = query.ephemerides ()
-
-    # priting RA and Dec of asteroid
-    print (f" {eph['targetname'][0]:32s}:" \
-           + f" (RA, Dec) = ({eph['RA'][0]:8.4f} deg," \
-           + f" {eph['DEC'][0]:+8.4f} deg)")
-
-    # RA in hour
-    ra_hr = eph['RA'][0] / 15.0
-
-    # Dec in deg
-    dec_deg = eph['DEC'][0]
-
-    # appending data to numpy arrays
-    data_ra_hr   = numpy.append (data_ra_hr, ra_hr)
-    data_dec_deg = numpy.append (data_dec_deg, dec_deg)
-
-# printing status
-print (f"Now, generating a plot of asteroid distribution on the sky...")
-
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
-
-# axes
-ax.grid ()
-ax.set_xlim (24.0, 0.0)
-ax.set_ylim (-90.0, +90.0)
-ax.set_xticks (numpy.linspace (0, 24, 9))
-ax.set_yticks (numpy.linspace (-90, 90, 7))
-ax.set_xlabel ('Right Ascension [hr]')
-ax.set_ylabel ('Declination [deg]')
-
-# title
-text_title = f"Distribution of asteroids on {date} (UT)"
-ax.set_title (text_title)
-
-# plotting data
-ax.plot (data_ra_hr, data_dec_deg, \
-         linestyle='None', marker='o', markersize=3, \
-         color='blue', alpha=0.3, \
-         label='Asteroids')
-ax.legend ()
-
-# saving file
-fig.savefig (file_output, dpi=resolution_dpi)
-
-# printing status
-print (f"Finished generating a plot of asteroid distribution on the sky!")
+        # printing progress
+        if (i % 10 == 0):
+            print (f' progress : {i / n_asteroids * 100.0:5.1f} percent')
