@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:38:15 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 22:05:25 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -23,10 +23,10 @@ u_deg = astropy.units.deg
 file_data = 'bsc5.data'
 
 # output files
-file_output = 'ai2023_s09_01_05.png'
+file_output = 'appy_s09_01_05.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # numpy arrays to storing data
 data_hr   = numpy.array ([])
