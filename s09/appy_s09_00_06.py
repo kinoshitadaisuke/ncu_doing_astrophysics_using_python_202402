@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:37:00 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 19:36:34 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -18,10 +18,10 @@ import matplotlib.backends.backend_agg
 file_catalogue = 'MPCORB.DAT.gz'
 
 # output file name
-file_output = 'ai2023_s09_00_06.png'
+file_output = 'appy_s09_00_06.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 #
 # parameters for histogram
