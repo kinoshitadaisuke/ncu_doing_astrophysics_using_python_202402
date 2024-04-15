@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:37:42 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 21:17:49 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -12,61 +12,62 @@ import astropy.coordinates
 import astropy.time
 import astropy.units
 
-# importing astroquery module
-import astroquery.jplhorizons
-
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
+# date/time
+date = astropy.time.Time ('2024-05-01 00:00:00')
+
+# input data file name
+file_input = 'asteroids_010000.data'
+
 # output file name
-file_output = 'ai2023_s09_00_15.png'
+file_output = 'appy_s09_00_15.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
+
+# making empty lists for storing data
+list_ra_hr   = []
+list_dec_deg = []
 
 # units
 u_deg = astropy.units.degree
 
-# date/time
-date = astropy.time.Time ('2024-01-01 00:00:00')
+# printing status
+print (f'Now, reading data file...')
 
-# number of asteroids to get position
-n_asteroids = 2000
+# opening data file
+with open (file_input, 'r') as fh:
+    # reading data file line-by-line
+    for line in fh:
+        # skipping line if the line starts with '#'
+        if (line[0] == '#'):
+            continue
+        # splitting line
+        (orbit, name) = line.split ('#')
+        # extracting RA and Dec
+        (ra_deg, dec_deg, ecl_lon_deg, ecl_lat_deg, \
+         gal_lon_deg, gal_lat_deg, absmag, appmag) = orbit.split ()
+        # conversion from string into float
+        ra_deg  = float (ra_deg)
+        dec_deg = float (dec_deg)
+        # conversion from deg into hr for RA
+        ra_hr = ra_deg / 15.0
+        # appending data to lists
+        list_ra_hr.append (ra_hr)
+        list_dec_deg.append (dec_deg)
 
-# making empty numpy arrays for storing data
-data_ra_deg  = numpy.array ([])
-data_dec_deg = numpy.array ([])
+# making numpy arrays
+array_ra_hr   = numpy.array (list_ra_hr)
+array_dec_deg = numpy.array (list_dec_deg)
 
-# printing header
-print (f"Positions of asteroids on {date}:")
+# printing status
+print (f'Finished reading data file!')
 
-# processing for each asteroid
-for i in range (1, n_asteroids + 1):
-    # set-up a query for JPL Horizons
-    query = astroquery.jplhorizons.Horizons (id=f"{i}", \
-                                             id_type='smallbody', \
-                                             epochs=date.jd)
-
-    # fetching ephemeris of asteroid
-    eph = query.ephemerides ()
-
-    # priting RA and Dec of asteroid
-    print (f" {eph['targetname'][0]:32s}:" \
-           + f" (RA, Dec) = ({eph['RA'][0]:8.4f} deg," \
-           + f" {eph['DEC'][0]:+8.4f} deg)")
-
-    # RA in deg
-    ra_deg = eph['RA'][0]
-    if (ra_deg > 180.0):
-        ra_deg -= 360.0
-
-    # Dec in deg
-    dec_deg = eph['DEC'][0]
-
-    # appending data to numpy arrays
-    data_ra_deg  = numpy.append (data_ra_deg, ra_deg)
-    data_dec_deg = numpy.append (data_dec_deg, dec_deg)
+# printing status
+print (f"Now, generating a plot of asteroid distribution on the sky...")
 
 # ecliptic plane
 ecl_lon = numpy.linspace (0.001, 359.999, 1000) * u_deg
@@ -74,50 +75,50 @@ ecl_lat = numpy.zeros (1000) * u_deg
 ecl_coord = astropy.coordinates.GeocentricMeanEcliptic (lon=ecl_lon, \
                                                         lat=ecl_lat, \
                                                         obstime=date)
-ecl_ra  = ecl_coord.transform_to (astropy.coordinates.ICRS) \
-                   .ra.wrap_at (180.0 * u_deg).radian
-ecl_dec = ecl_coord.transform_to (astropy.coordinates.ICRS).dec.radian
+ecl_ra  = ecl_coord.transform_to (astropy.coordinates.ICRS ()).ra.deg / 15.0
+ecl_dec = ecl_coord.transform_to (astropy.coordinates.ICRS ()).dec.deg
 
 # galactic plane
 gal_lon = numpy.linspace (0.001, 359.999, 1000) * u_deg
 gal_lat = numpy.zeros (1000) * u_deg
 gal_coord = astropy.coordinates.Galactic (l=gal_lon, \
                                           b=gal_lat)
-gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS) \
-                   .ra.wrap_at (180.0 * u_deg).radian
-gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS).dec.radian
+gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS ()).ra.deg / 15.0
+gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS ()).dec.deg
+
 
 # making objects "fig" and "ax"
 fig    = matplotlib.figure.Figure ()
 canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111, projection='hammer')
+ax     = fig.add_subplot (111)
 
 # axes
 ax.grid ()
-ax.set_xlabel ('Right Ascension [deg]')
+ax.set_xlim (24.0, 0.0)
+ax.set_ylim (-90.0, +90.0)
+ax.set_xticks (numpy.linspace (0, 24, 9))
+ax.set_yticks (numpy.linspace (-90, 90, 7))
+ax.set_xlabel ('Right Ascension [hr]')
 ax.set_ylabel ('Declination [deg]')
 
 # title
-text_title = f"Distribution of asteroids"
-ax.set_title (text_title, loc='right')
+text_title = f"Distribution of asteroids on the sky on {date}"
+ax.set_title (text_title)
 
 # plotting data
+ax.plot (array_ra_hr, array_dec_deg, \
+         linestyle='None', marker='o', markersize=2, \
+         color='blue', alpha=0.2, \
+         label='Asteroids')
 ax.plot (ecl_ra, ecl_dec, \
          linestyle='None', marker='o', markersize=5, \
          color='yellow', alpha=0.5, \
          label='Ecliptic plane')
-ax.plot (ecl_ra, ecl_dec, \
-         linestyle='None', marker='o', markersize=30, \
-         color='yellow', alpha=0.01)
 ax.plot (gal_ra, gal_dec, \
          linestyle='None', marker='o', markersize=5, \
          color='silver', alpha=0.5, \
          label='Galactic plane')
-ax.plot (numpy.deg2rad (data_ra_deg), numpy.deg2rad (data_dec_deg), \
-         linestyle='None', marker='o', markersize=3, \
-         color='blue', alpha=0.3, \
-         label='Asteroids')
-ax.legend (bbox_to_anchor=(0.9, -0.1))
+ax.legend ()
 
 # saving file
 fig.savefig (file_output, dpi=resolution_dpi)
