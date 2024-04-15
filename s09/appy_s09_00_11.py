@@ -1,80 +1,65 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:37:22 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 20:24:45 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # importing astropy module
-import astropy.coordinates
 import astropy.time
-import astropy.units
-
-# importing astroquery module
-import astroquery.jplhorizons
 
 # importing matplotlib module
 import matplotlib.figure
 import matplotlib.backends.backend_agg
 
+# date/time
+date = astropy.time.Time ('2024-05-01 00:00:00')
+
+# input data file name
+file_input = 'asteroids_000100.data'
+
 # output file name
-file_output = 'ai2023_s09_00_11.png'
+file_output = 'appy_s09_00_11.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
-# units
-u_deg = astropy.units.degree
+# making empty lists for storing data
+list_ra_hr   = []
+list_dec_deg = []
 
-# date/time
-date = astropy.time.Time ('2024-01-01 00:00:00')
+# printing status
+print (f'Now, reading data file...')
 
-# number of asteroids to get position
-n_asteroids = 300
+# opening data file
+with open (file_input, 'r') as fh:
+    # reading data file line-by-line
+    for line in fh:
+        # skipping line if the line starts with '#'
+        if (line[0] == '#'):
+            continue
+        # splitting line
+        (orbit, name) = line.split ('#')
+        # extracting RA and Dec
+        (ra_deg, dec_deg, ecl_lon_deg, ecl_lat_deg, \
+         gal_lon_deg, gal_lat_deg, absmag, appmag) = orbit.split ()
+        # conversion from string into float
+        ra_deg  = float (ra_deg)
+        dec_deg = float (dec_deg)
+        # conversion from deg into hr for RA
+        ra_hr = ra_deg / 15.0
+        # appending data to lists
+        list_ra_hr.append (ra_hr)
+        list_dec_deg.append (dec_deg)
 
-# making empty numpy arrays for storing data
-data_ra_hr   = numpy.array ([])
-data_dec_deg = numpy.array ([])
+# making numpy arrays
+array_ra_hr   = numpy.array (list_ra_hr)
+array_dec_deg = numpy.array (list_dec_deg)
 
-# printing header
-print (f"Positions of asteroids on {date}:")
-
-# processing for each asteroid
-for i in range (1, n_asteroids + 1):
-    # set-up a query for JPL Horizons
-    query = astroquery.jplhorizons.Horizons (id=f"{i}", \
-                                             id_type='smallbody', \
-                                             epochs=date.jd)
-
-    # fetching ephemeris of asteroid
-    eph = query.ephemerides ()
-
-    # priting RA and Dec of asteroid
-
-    print (f" {eph['targetname'][0]:32s}:" \
-           + f" (RA, Dec) = ({eph['RA'][0]:8.4f} deg," \
-           + f" {eph['DEC'][0]:+8.4f} deg)")
-
-    # RA in hour
-    ra_hr = eph['RA'][0] / 15.0
-
-    # Dec in deg
-    dec_deg = eph['DEC'][0]
-
-    # appending data to numpy arrays
-    data_ra_hr   = numpy.append (data_ra_hr, ra_hr)
-    data_dec_deg = numpy.append (data_dec_deg, dec_deg)
-
-# ecliptic plane
-ecl_lon = numpy.linspace (0.001, 359.999, 1000) * u_deg
-ecl_lat = numpy.zeros (1000) * u_deg
-ecl_coord = astropy.coordinates.GeocentricMeanEcliptic (lon=ecl_lon, \
-                                                        lat=ecl_lat, \
-                                                        obstime=date)
-ecl_ra  = ecl_coord.transform_to (astropy.coordinates.ICRS).ra.deg / 15.0
-ecl_dec = ecl_coord.transform_to (astropy.coordinates.ICRS).dec.deg
+# printing status
+print (f'Finished reading data file!')
 
 # printing status
 print (f"Now, generating a plot of asteroid distribution on the sky...")
@@ -94,15 +79,11 @@ ax.set_xlabel ('Right Ascension [hr]')
 ax.set_ylabel ('Declination [deg]')
 
 # title
-text_title = f"Distribution of asteroids on {date}"
+text_title = f"Distribution of asteroids on the sky on {date}"
 ax.set_title (text_title)
 
 # plotting data
-ax.plot (ecl_ra, ecl_dec, \
-         linestyle='None', marker='o', markersize=5, \
-         color='yellow', alpha=0.5, \
-         label='Ecliptic plane')
-ax.plot (data_ra_hr, data_dec_deg, \
+ax.plot (array_ra_hr, array_dec_deg, \
          linestyle='None', marker='o', markersize=3, \
          color='blue', alpha=0.3, \
          label='Asteroids')
