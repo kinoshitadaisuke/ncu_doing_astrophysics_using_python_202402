@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:38:45 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 22:41:25 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -27,10 +27,10 @@ u_rad = astropy.units.rad
 file_cat    = 'hip2.data.gz'
 
 # output image file
-file_output = 'ai2023_s09_02_02.png'
+file_output = 'appy_s09_02_02.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # list to store data
 list_ra_rad  = []
