@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:38:48 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 22:56:37 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -27,10 +27,10 @@ u_rad = astropy.units.rad
 file_cat    = 'hip2.data.gz'
 
 # output image file
-file_output = 'ai2023_s09_02_03.png'
+file_output = 'appy_s09_02_03.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # list to store data
 list_ra_rad  = []
@@ -95,9 +95,9 @@ gal_lon = numpy.linspace (0.001, 359.999, 1000) * u_deg
 gal_lat = numpy.zeros (1000) * u_deg
 gal_coord = astropy.coordinates.Galactic (l=gal_lon, \
                                           b=gal_lat)
-gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS) \
+gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS ()) \
                    .ra.wrap_at (180.0 * u_deg).radian
-gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS).dec.radian
+gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS ()).dec.radian
 
 # making objects "fig" and "ax"
 fig    = matplotlib.figure.Figure ()
