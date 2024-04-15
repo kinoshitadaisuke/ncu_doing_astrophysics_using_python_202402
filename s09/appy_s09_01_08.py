@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:38:29 (UT+8) daisuke>
+# Time-stamp: <2024/04/15 22:24:43 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -23,10 +23,10 @@ u_deg = astropy.units.deg
 file_data = 'bsc5c.data'
 
 # output files
-file_output = 'ai2023_s09_01_08.png'
+file_output = 'appy_s09_01_08.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # numpy arrays to storing data
 data_hr   = numpy.array ([])
@@ -99,9 +99,9 @@ gal_lon = numpy.linspace (0.001, 359.999, 1000) * u_deg
 gal_lat = numpy.zeros (1000) * u_deg
 gal_coord = astropy.coordinates.Galactic (l=gal_lon, \
                                           b=gal_lat)
-gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS) \
+gal_ra  = gal_coord.transform_to (astropy.coordinates.ICRS ()) \
                    .ra.wrap_at (180.0 * u_deg).radian
-gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS).dec.radian
+gal_dec = gal_coord.transform_to (astropy.coordinates.ICRS ()).dec.radian
 
 # making objects "fig" and "ax"
 fig    = matplotlib.figure.Figure ()
