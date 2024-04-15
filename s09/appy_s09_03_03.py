@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/11 14:39:14 (UT+8) daisuke>
+# Time-stamp: <2024/04/16 00:40:24 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -18,10 +18,10 @@ import matplotlib.backends.backend_agg
 list_file_cat = ['xsc_aaa.gz', 'xsc_baa.gz']
 
 # output image file
-file_output   = 'ai2023_s09_03_03.png'
+file_output   = 'appy_s09_03_03.png'
 
 # resolution in DPI
-resolution_dpi = 225
+resolution_dpi = 150
 
 # lists for storing data
 list_glon_rad = []
