@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/19 15:49:16 (Taiwan_Standard_Time_UT+8) daisuke>
+# Time-stamp: <2024/04/18 20:28:46 (UT+8) daisuke>
 #
 
 # original CSV file
