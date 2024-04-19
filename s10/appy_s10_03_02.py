@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:28:27 (UT+8) daisuke>
+# Time-stamp: <2024/04/19 12:24:14 (UT+8) daisuke>
 #
 
 # data files (distance table and velocity table)
@@ -9,7 +9,7 @@ file_d = 'lvg_d.data'
 file_v = 'lvg_v.data'
 
 # output file name
-file_output = 'lvg.data'
+file_output = 'lvg_dv.data'
 
 # dictionary to store data
 data_d = {}
@@ -79,9 +79,16 @@ with open (file_v, 'r') as fh_v:
 with open (file_output, 'w') as fh_out:
     # writing header
     header = f"# LVG galaxies with known distance and velocity\n" \
-        + f"# distance in Mpc, distance error in Mpc,\n" \
-        + f"# velocity in km/s, velocity error in km/s,\n" \
-        + f"# method of distance determination, name of galaxy\n"
+        + f"#\n" \
+        + f"#  data format\n" \
+        + f"#\n" \
+        + f"#   1st column : distance in Mpc\n" \
+        + f"#   2nd column : distance error in Mpc\n" \
+        + f"#   3rd column : velocity in km/s\n" \
+        + f"#   4th column : velocity error in km/s\n" \
+        + f"#   after '#'  : method of distance determination,\n" \
+        + f"#                name of galaxy\n" \
+        + f"#\n"
     fh_out.write (header)
 
     # finding galaxies with both known distance and velocity
