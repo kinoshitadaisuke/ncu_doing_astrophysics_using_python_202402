@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:28:34 (UT+8) daisuke>
+# Time-stamp: <2024/04/19 12:26:05 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -19,8 +19,8 @@ desc   = 'making Hubble diagram using LVG data'
 parser = argparse.ArgumentParser (description=desc)
 parser.add_argument ('-i', '--input', help='input data file name')
 parser.add_argument ('-o', '--output', help='output figure file name')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
 
 # analysis of command-line arguments
 args = parser.parse_args ()
