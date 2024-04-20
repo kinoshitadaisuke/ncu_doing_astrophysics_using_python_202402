@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:29:22 (UT+8) daisuke>
+# Time-stamp: <2024/04/20 19:57:01 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -23,8 +23,8 @@ desc   = 'making Hubble diagram using Unified Supernova Catalogue'
 parser = argparse.ArgumentParser (description=desc)
 parser.add_argument ('-i', '--input', help='input data file name')
 parser.add_argument ('-o', '--output', help='output figure file name')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
 
 # command-line arguments analysis
 args = parser.parse_args ()
