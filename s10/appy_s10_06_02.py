@@ -1,14 +1,14 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:29:43 (UT+8) daisuke>
+# Time-stamp: <2024/04/20 22:37:21 (UT+8) daisuke>
 #
 
 # importing json module
 import json
 
 # file name
-file_json = 'osc_0000_1989/SN1980A.json'
+file_json = 'osc_0000_1989/SN1989V.json'
 
 # opening file
 with open (file_json, 'r') as fh:
