@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:30:13 (UT+8) daisuke>
+# Time-stamp: <2024/04/20 22:45:52 (UT+8) daisuke>
 #
 
 # importing pathlib module
@@ -14,7 +14,7 @@ import json
 import scipy.constants
 
 # output file
-file_output = 'osc_typeia.data'
+file_output = 'osc_typeia_1.data'
 
 # constants
 c = scipy.constants.c
