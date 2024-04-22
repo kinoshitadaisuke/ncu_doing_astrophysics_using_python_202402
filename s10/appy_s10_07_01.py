@@ -1,77 +1,62 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/18 20:31:07 (UT+8) daisuke>
+# Time-stamp: <2024/04/22 19:53:09 (UT+8) daisuke>
 #
 
 # importing argparse module
 import argparse
 
-# importing numpy module
-import numpy
+# importing pathlib module
+import pathlib
 
-# importing matplotlib module
-import matplotlib.figure
-import matplotlib.backends.backend_agg
+# import tarfile module
+import tarfile
+
+# choices
+choices_compression = ['none', 'gz', 'bz2', 'xz']
 
 # command-line argument analysis
-desc   = 'Hubble diagram of high-z supernovae'
+desc   = 'listing files in gzipped tar files'
 parser = argparse.ArgumentParser (description=desc)
-parser.add_argument ('-i', '--input', help='input data file name')
-parser.add_argument ('-o', '--output', help='output figure file name')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-c', '--compression', default='', \
+                     choices=choices_compression, \
+                     help='compression type (default: none)')
+parser.add_argument ('files', nargs='+', help='files')
 
 # command-line arguments analysis
 args = parser.parse_args ()
 
 # input parameters
-file_data      = args.input
-file_fig       = args.output
-resolution_dpi = args.resolution
+compression = args.compression
+list_files  = args.files
 
-# numpy arrays for storing data
-data_zcmb   = numpy.array ([])
-data_mB     = numpy.array ([])
-data_mB_err = numpy.array ([])
+# mode for opening tar file
+if (compression == 'gz'):
+    mode = 'r:gz'
+elif (compression == 'bz2'):
+    mode = 'r:bz2'
+elif (compression == 'xz'):
+    mode = 'r:xz'
+else:
+    mode = 'r:'
 
-# opening file
-with open (file_data, 'r') as fh:
-    # reading file
-    for line in fh:
-        # skip if the line starts with '#'
-        if (line[0] == '#'):
-            continue
-        # splitting the line
-        data = line.split ()
-        # extracting data
-        zcmb   = float (data[1])
-        mB     = float (data[4])
-        mB_err = float (data[5])
-        # appending data to numpy arrays
-        data_zcmb   = numpy.append (data_zcmb, zcmb)
-        data_mB     = numpy.append (data_mB, mB)
-        data_mB_err = numpy.append (data_mB_err, mB_err)
-
-# distance modulus
-data_mu = data_mB + 19.30
-
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
-
-# axes
-ax.set_xlabel ('Redshift')
-ax.set_ylabel ('Distance Modulus [mag]')
-ax.grid ()
-
-# making a Hubble diagram
-ax.errorbar (data_zcmb, data_mu, yerr=data_mB_err, \
-             linestyle='none', marker='o', markersize=1, color='blue', \
-             ecolor='black', capsize=2, \
-             label='high-z supernovae from SNLS')
-ax.legend ()
-
-# saving the plot into a file
-fig.savefig (file_fig, dpi=resolution_dpi, bbox_inches="tight")
+# processing each file
+for file_tar in list_files:
+    # making pathlib object
+    path_tar = pathlib.Path (file_tar)
+    # existence check
+    if not (path_tar.exists ()):
+        # printing message
+        print (f'ERROR:')
+        print (f'ERROR: file "{file_tar}" does not exists!')
+        print (f'ERROR:')
+        # skipping
+        continue
+    # opening tar file
+    with tarfile.open (name=file_tar, mode=mode) as tar:
+        # getting a list of files in tar file
+        list_members = tar.getmembers ()
+        # printing a list of files in tar file
+        for member in list_members:
+            print (f'{member.name}    ({member.size} byte)')
