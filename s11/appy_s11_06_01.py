@@ -1,7 +1,7 @@
-#!/usr/pkg/bin/python3.10
+#!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2023/11/23 17:21:53 (Taiwan_Standard_Time_UT+8) daisuke>
+# Time-stamp: <2024/04/25 20:35:01 (UT+8) daisuke>
 #
 
 # data file
