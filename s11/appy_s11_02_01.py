@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:32:29 (UT+8) daisuke>
+# Time-stamp: <2024/04/27 22:28:47 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -19,7 +19,7 @@ file_input = 'm1.fits'
 file_output = 'm1.png'
 
 # resolution in DPI
-resolution_dpi = 225.0
+resolution_dpi = 150.0
 
 # colour map
 colour_map = 'bone'
