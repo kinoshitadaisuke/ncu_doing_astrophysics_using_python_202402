@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:32:59 (UT+8) daisuke>
+# Time-stamp: <2024/04/27 23:01:17 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -70,7 +70,7 @@ print (f" {query}")
 
 # sending a job to Gaia database
 job = astroquery.gaia.Gaia.launch_job_async (query, dump_to_file=True, \
-                                             output_format="votable", \
+                                             output_format="votable_gzip", \
                                              output_file=file_output)
 
 # printing query to Gaia database
