@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:34:21 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 09:44:17 (UT+8) daisuke>
 #    
 
 # importing argparse module
@@ -27,8 +27,8 @@ parser.add_argument ('-o', '--output', help='output figure file name')
 parser.add_argument ('-a', '--min', type=float, help='minimum data value')
 parser.add_argument ('-b', '--max', type=float, help='maximum data value')
 parser.add_argument ('-n', '--nbins', type=int, help='number of bins')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -45,7 +45,7 @@ resolution_dpi = args.resolution
 table = astropy.io.votable.parse_single_table (file_votable).to_table ()
 
 # data
-data_id        = numpy.array (table['source_id'])
+data_id        = numpy.array (table['SOURCE_ID'])
 data_ra        = numpy.array (table['ra'])
 data_dec       = numpy.array (table['dec'])
 data_parallax  = numpy.array (table['parallax'])
