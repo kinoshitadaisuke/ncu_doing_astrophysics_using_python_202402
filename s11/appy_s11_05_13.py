@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:34:43 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 18:21:08 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -15,24 +15,30 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # construction of parser object for argparse
-descr  = 'making HR diagram'
+descr  = 'calculating mean proper motion of candidate stars'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-i', '--input', help='input file name')
-parser.add_argument ('-o', '--output', help='output file name')
-parser.add_argument ('-t', '--title', help='title of plot')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-a1', type=float, default=0.0, \
+                     help='minimum proper motion in RA (default: 0)')
+parser.add_argument ('-a2', type=float, default=0.0, \
+                     help='maximum proper motion in RA (default: 0)')
+parser.add_argument ('-d1', type=float, default=0.0, \
+                     help='minimum proper motion in Dec (default: 0)')
+parser.add_argument ('-d2', type=float, default=0.0, \
+                     help='maximum proper motion in Dec (default: 0)')
 
 # command-line argument analysis
 args = parser.parse_args ()
 
 # input parameters
-file_input     = args.input
-file_output    = args.output
-title          = args.title
-resolution_dpi = args.resolution
+file_input  = args.input
+file_output = args.output
+pmra_min    = args.a1
+pmra_max    = args.a2
+pmdec_min   = args.d1
+pmdec_max   = args.d2
 
 # lists to store data
 list_id       = []
@@ -53,6 +59,9 @@ list_gr       = []
 with open (file_input, 'r') as fh:
     # reading file
     for line in fh:
+        # if line starts with '#', then skip
+        if (line[0] == '#'):
+            continue
         # removing new line at the end of the line
         line = line.strip ()
         # splitting the line
@@ -102,26 +111,35 @@ list_br.clear ()
 list_bg.clear ()
 list_gr.clear ()
 
-# calculation of g-band absolute magnitude
-data_g_abs = data_g + 5.0 * numpy.log10 (data_parallax / 1000.0) + 5.0
+# making empty lists
+list_pmra_selected  = []
+list_pmdec_selected = []
 
-# making objects "fig", "canvas", and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-ax     = fig.add_subplot (111)
+# finding candidate stars
+for i in range (len (data_pmra)):
+    # rejecting star if pmra is smaller than pmra_min
+    if (data_pmra[i] < pmra_min):
+        continue
+    # rejecting star if pmra is larger than pmra_max
+    if (data_pmra[i] > pmra_max):
+        continue
+    # rejecting star if pmdec is smaller than pmdec_min
+    if (data_pmdec[i] < pmdec_min):
+        continue
+    # rejecting star if pmdec is larger than pmdec_max
+    if (data_pmdec[i] > pmdec_max):
+        continue
+    # appending data to lists
+    list_pmra_selected.append (data_pmra[i])
+    list_pmdec_selected.append (data_pmdec[i])
 
-# axes
-ax.set_xlabel ('(b-r) colour index')
-ax.set_ylabel ('g absolute magnitude [mag]')
-ax.invert_yaxis ()
-ax.grid ()
-ax.set_title (title)
+# calculating mean proper motion of candidate stars
+data_pmra_selected  = numpy.array (list_pmra_selected)
+data_pmdec_selected = numpy.array (list_pmdec_selected)
+mean_pmra           = numpy.mean (data_pmra_selected)
+mean_pmdec          = numpy.mean (data_pmdec_selected)
 
-# plotting vectors
-ax.plot (data_br, data_g_abs, \
-         linestyle='None', marker='o', markersize=3, color='blue', \
-         label='Gaia DR3 stars')
-ax.legend ()
-
-# saving file
-fig.savefig (file_output, dpi=resolution_dpi, bbox_inches="tight")
+# printing results
+print (f'mean pmra and pmdec of star cluster member candidates:')
+print (f'  mean pmra  = {mean_pmra:+6.2f} [mas/yr]')
+print (f'  mean pmdec = {mean_pmdec:+6.2f} [mas/yr]')
