@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:34:37 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 18:45:03 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -15,25 +15,34 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # construction of parser object for argparse
-descr  = 'selection stars by proper motion'
+descr  = 'visualisation of proper motion of stars'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
 parser.add_argument ('-i', '--input', help='input file name')
 parser.add_argument ('-o', '--output', help='output file name')
-parser.add_argument ('-a', '--angle', type=float, default=45.0, \
-                     help='angle criterion in deg (default: 45)')
-parser.add_argument ('-l', '--length', type=float, default=2.0, \
-                     help='length criterion (default: 2.0)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
+parser.add_argument ('-a1', type=float, default=0.0, \
+                     help='minimum proper motion in RA to plot (default: 0)')
+parser.add_argument ('-a2', type=float, default=0.0, \
+                     help='maximum proper motion in RA to plot (default: 0)')
+parser.add_argument ('-d1', type=float, default=0.0, \
+                     help='minimum proper motion in Dec to plot (default: 0)')
+parser.add_argument ('-d2', type=float, default=0.0, \
+                     help='maximum proper motion in Dec to plot (default: 0)')
 
 # command-line argument analysis
 args = parser.parse_args ()
 
 # input parameters
-file_input       = args.input
-file_output      = args.output
-criterion_angle  = args.angle
-criterion_length = args.length
+file_input     = args.input
+file_output    = args.output
+resolution_dpi = args.resolution
+pmra_min       = args.a1
+pmra_max       = args.a2
+pmdec_min      = args.d1
+pmdec_max      = args.d2
 
 # lists to store data
 list_id       = []
@@ -51,15 +60,18 @@ list_bg       = []
 list_gr       = []
 
 # opening file
-with open (file_input, 'r') as fh_in:
-    # reading file
-    for line in fh_in:
+with open (file_input, 'r') as fh:
+    # reading file line by line
+    for line in fh:
+        # if the line starts with '#', then skip
+        if (line[0] == '#'):
+            continue
         # removing new line at the end of the line
         line = line.strip ()
         # splitting the line
         data = line.split ()
         # fields
-        list_id.append (int (data[0]) )
+        list_id.append (data[0])
         list_ra.append (float (data[1]) )
         list_dec.append (float (data[2]) )
         list_parallax.append (float (data[3]) )
@@ -103,48 +115,24 @@ list_br.clear ()
 list_bg.clear ()
 list_gr.clear ()
 
-# normalised proper motion vectors
-data_pmra_norm  = numpy.array ([])
-data_pmdec_norm = numpy.array ([])
-data_pm_length  = numpy.array ([])
-for i in range (len (data_pmra) ):
-    # length of a vector (data_pmra[i], data_pmdec[i])
-    length = numpy.sqrt (data_pmra[i]**2 + data_pmdec[i]**2)
-    # normalised vector
-    pmra_norm  = data_pmra[i] / length
-    pmdec_norm = data_pmdec[i] / length
-    # appending vector components to numpy arrays
-    data_pmra_norm  = numpy.append (data_pmra_norm, pmra_norm)
-    data_pmdec_norm = numpy.append (data_pmdec_norm, pmdec_norm)
-    data_pm_length  = numpy.append (data_pm_length, length)
+# making objects "fig", "canvas", and "ax"
+fig    = matplotlib.figure.Figure ()
+canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
+ax     = fig.add_subplot (111)
 
-# average direction of proper motion
-pmra_mean  = numpy.mean (data_pmra_norm)
-pmdec_mean = numpy.mean (data_pmdec_norm)
-pmra_mean_norm  = pmra_mean / numpy.sqrt (pmra_mean**2 + pmdec_mean**2)
-pmdec_mean_norm = pmdec_mean / numpy.sqrt (pmra_mean**2 + pmdec_mean**2)
-pm_length_mean = numpy.mean (data_pm_length)
+# axes
+ax.set_xlabel ('Proper motion in RA [mas/yr]')
+ax.set_ylabel ('Proper motion in Dec [mas/yr]')
+ax.set_aspect ('equal')
+ax.grid ()
+ax.set_xlim (pmra_min, pmra_max)
+ax.set_ylim (pmdec_min, pmdec_max)
 
-# opening file for writing
-with open (file_output, 'w') as fh_out:
-    # angle between a proper motion vector and mean proper motion vector
-    for i in range ( len (data_pmra) ):
-        # angle
-        cos_a = data_pmra_norm[i] * pmra_mean_norm \
-            + data_pmdec_norm[i] * pmdec_mean_norm
-        a = numpy.arccos (cos_a) / numpy.pi * 180.0
-        # length of a vector (data_pmra[i], data_pmdec[i])
-        length = numpy.sqrt (data_pmra[i]**2 + data_pmdec[i]**2)
-        # rejecting stars with proper motions quite different from
-        # the average motion of stars
-        if ( (a <= criterion_angle) \
-             and (length < criterion_length * pm_length_mean) ):
-            # writing data into file
-            record = f"{data_id[i]:19d}" \
-                + f" {data_ra[i]:10.6f} {data_dec[i]:+10.6f}" \
-                + f" {data_parallax[i]:10.6f}" \
-                + f" {data_pmra[i]:10.6f} {data_pmdec[i]:10.6f}" \
-                + f" {data_rv[i]:+10.6f}" \
-                + f" {data_b[i]:9.6f} {data_g[i]:9.6f} {data_r[i]:9.6f}" \
-                + f" {data_br[i]:9.6f} {data_bg[i]:9.6f} {data_gr[i]:9.6f}\n"
-            fh_out.write (record)
+# plotting stars
+ax.plot (data_pmra, data_pmdec, \
+         linestyle='None', marker='o', markersize=1, color='blue', alpha=0.5, \
+         label='Stars in Gaia DR3')
+ax.legend (bbox_to_anchor=(1.05, 0.95), loc='upper left')
+
+# saving file
+fig.savefig (file_output, dpi=resolution_dpi, bbox_inches="tight")
