@@ -1,11 +1,18 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:35:01 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 20:03:06 (UT+8) daisuke>
 #
 
 # data file
 file_ms = 'ms.data'
+
+# printing header
+print (f'# colour and effective temperature of main-sequence stars')
+print (f'#  1st column : spectral type')
+print (f'#  2nd column : effective temperature in K')
+print (f'#  3rd column : Gaia (b-r) colour index')
+print (f'#  4th column : Gaia g-band absolute magnitude')
 
 # opening data file
 with open (file_ms, 'r') as fh_r:
