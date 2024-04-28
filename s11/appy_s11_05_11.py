@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:34:32 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 18:45:49 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -21,8 +21,8 @@ parser = argparse.ArgumentParser (description=descr)
 # adding arguments
 parser.add_argument ('-i', '--input', help='input file name')
 parser.add_argument ('-o', '--output', help='output file name')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -51,6 +51,9 @@ list_gr       = []
 with open (file_input, 'r') as fh:
     # reading file line by line
     for line in fh:
+        # if the line starts with '#', then skip
+        if (line[0] == '#'):
+            continue
         # removing new line at the end of the line
         line = line.strip ()
         # splitting the line
@@ -106,17 +109,16 @@ canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
 ax     = fig.add_subplot (111)
 
 # axes
-ax.set_xlabel ('Right Ascension [deg]')
-ax.set_ylabel ('Declination [deg]')
+ax.set_xlabel ('Proper motion in RA [mas/yr]')
+ax.set_ylabel ('Proper motion in Dec [mas/yr]')
 ax.set_aspect ('equal')
-ax.invert_xaxis ()
 ax.grid ()
 
 # plotting vectors
-ax.plot (data_ra, data_dec, \
-         linestyle='None', marker='o', markersize=2, color='black', \
-         label='Gaia DR3 stars')
-ax.quiver (data_ra, data_dec, data_pmra, data_pmdec, color='blue', angles='xy')
+ax.plot (data_pmra, data_pmdec, \
+         linestyle='None', marker='o', markersize=1, color='blue', alpha=0.5, \
+         label='Stars in Gaia DR3')
+ax.legend (bbox_to_anchor=(1.05, 0.95), loc='upper left')
 
 # saving file
 fig.savefig (file_output, dpi=resolution_dpi, bbox_inches="tight")
