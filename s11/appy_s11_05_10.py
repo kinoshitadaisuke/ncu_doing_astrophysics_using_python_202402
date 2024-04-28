@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:34:26 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 10:55:12 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -24,8 +24,8 @@ parser = argparse.ArgumentParser (description=descr)
 # adding arguments
 parser.add_argument ('-i', '--input', help='input VOTable file name')
 parser.add_argument ('-o', '--output', help='output file name')
-parser.add_argument ('-a', '--min', type=float, help='minimum data value')
-parser.add_argument ('-b', '--max', type=float, help='maximum data value')
+parser.add_argument ('-a', '--min', type=float, help='minimum distance value')
+parser.add_argument ('-b', '--max', type=float, help='maximum distance value')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -33,14 +33,14 @@ args = parser.parse_args ()
 # input parameters
 file_votable = args.input
 file_output  = args.output
-x_min  = args.min
-x_max  = args.max
+dist_min     = args.min
+dist_max     = args.max
 
 # reading VOTable
 table = astropy.io.votable.parse_single_table (file_votable).to_table ()
 
 # data
-data_id        = numpy.array (table['source_id'])
+data_id        = numpy.array (table['SOURCE_ID'])
 data_ra        = numpy.array (table['ra'])
 data_dec       = numpy.array (table['dec'])
 data_parallax  = numpy.array (table['parallax'])
@@ -79,6 +79,10 @@ for i in range ( len (data_parallax) ):
 
 # opening file for writing
 with open (file_output, 'w') as fh:
+    # writing header
+    header = f'# star ID, RA, Dec, parallax, pmra, pmdec, radial velocity' \
+        + f' b mag, g mag, r mag, b-r, b-g, g-r\n'
+    fh.write (header)
     # examining each star
     for i in range ( len (data_distance) ):
         # rejecting stars of low signal-to-noise ratio
@@ -88,8 +92,9 @@ with open (file_output, 'w') as fh:
             continue
         if (data_r_snr[i] < 10.0):
             continue
-        # selecting stars between distances x_min and x_max
-        if ( (data_distance[i] >= x_min) and (data_distance[i] <= x_max) ):
+        # selecting stars between distances dist_min and dist_max
+        if ( (data_distance[i] >= dist_min) \
+             and (data_distance[i] <= dist_max) ):
             # writing data into file
             record = f"{data_id[i]:19d}" \
                 + f" {data_ra[i]:10.6f} {data_dec[i]:+10.6f}" \
