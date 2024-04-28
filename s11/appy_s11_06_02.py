@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/25 20:35:07 (UT+8) daisuke>
+# Time-stamp: <2024/04/28 20:06:21 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -24,8 +24,8 @@ parser.add_argument ('-o', '--output', help='output file name')
 parser.add_argument ('-m', '--mainsequence', default='ms.data', \
                      help='main-sequence data file (default: ms.data)')
 parser.add_argument ('-t', '--title', help='title of plot')
-parser.add_argument ('-r', '--resolution', type=float, default=225.0, \
-                     help='resolution in DPI (default: 225)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution in DPI (default: 150)')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -56,6 +56,9 @@ list_gr       = []
 with open (file_input, 'r') as fh:
     # reading file
     for line in fh:
+        # if line starts with '#', then skip
+        if (line[0] == '#'):
+            continue
         # removing new line at the end of the line
         line = line.strip ()
         # splitting the line
@@ -157,9 +160,11 @@ ax     = fig.add_subplot (111)
 # axes
 ax.set_xlabel ('(b-r) colour index')
 ax.set_ylabel ('g absolute magnitude [mag]')
-ax.invert_yaxis ()
 ax.grid ()
 ax.set_title (title)
+ax.set_box_aspect (aspect=1.0)
+ax.set_xlim (-1.0, 6.0)
+ax.set_ylim (18.0, -3.0)
 
 # plotting vectors
 ax.plot (data_br, data_g_abs, \
@@ -170,7 +175,7 @@ ax.plot (data_ms_colour, data_ms_absmag, \
          linestyle='-', linewidth=10, color='orange', alpha=0.5, \
          zorder=0.1, \
          label='Typical main-sequence stars')
-ax.legend ()
+ax.legend (bbox_to_anchor=(1.05, 0.95), loc='upper left')
 
 # saving file
 fig.savefig (file_output, dpi=resolution_dpi, bbox_inches="tight")
