@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/28 18:21:08 (UT+8) daisuke>
+# Time-stamp: <2024/04/29 18:50:06 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -34,7 +34,6 @@ args = parser.parse_args ()
 
 # input parameters
 file_input  = args.input
-file_output = args.output
 pmra_min    = args.a1
 pmra_max    = args.a2
 pmdec_min   = args.d1
