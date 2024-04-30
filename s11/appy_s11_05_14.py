@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/04/28 19:08:54 (UT+8) daisuke>
+# Time-stamp: <2024/04/30 09:32:43 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -165,12 +165,14 @@ ax.set_xlim (pmra_min, pmra_max)
 ax.set_ylim (pmdec_min, pmdec_max)
 
 # plotting stars
-ax.plot (mean_pmra, mean_pmdec, \
-         linestyle='None', marker='+', markersize=10, color='red', \
-         label='mean proper motion')
 ax.plot (data_pmra, data_pmdec, \
          linestyle='None', marker='o', markersize=1, color='blue', alpha=0.5, \
+         zorder=0.1, \
          label='Stars in Gaia DR3')
+ax.plot (mean_pmra, mean_pmdec, \
+         linestyle='None', marker='+', markersize=10, color='red', \
+         zorder=0.2, \
+         label='mean proper motion')
 for r in list_radii:
     n = 1000
     data_theta = numpy.linspace (0.0, 2.0 * numpy.pi, n)
