@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:17:34 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 11:09:35 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -10,6 +10,9 @@ import numpy
 # importing astropy module
 import astropy.time
 import astropy.units
+
+# output data file
+file_output = 'appy_s12_01_00.data'
 
 # constant
 pi = numpy.pi
@@ -47,12 +50,12 @@ start_calib = (24 - 8) / 24.0 # 16:00 UT
 end_calib   = (25 - 8) / 24.0 # 17:00 UT
 
 # start of observation
-date_start = '2023-12-01T12:00:00'
+date_start = '2024-07-01T12:00:00'
 t_start    = astropy.time.Time (date_start, scale='utc', format='isot')
 mjd_start  = t_start.mjd
 
 # end of observation
-date_end = '2023-12-04T20:00:00'
+date_end = '2024-07-04T20:00:00'
 t_end    = astropy.time.Time (date_end, scale='utc', format='isot')
 mjd_end  = t_end.mjd
 
@@ -69,23 +72,6 @@ interval = exptime + overhead
 error_mean  = 0.00
 error_sigma = 0.03
 
-# printing input parameters
-print (f"#")
-print (f"#")
-print (f"# Synthetic data for period search")
-print (f"#")
-print (f"#")
-print (f"# input parameters")
-print (f"#")
-print (f"#  start of obs. = {t_start} = MJD {t_start.mjd}")
-print (f"#  end of obs.   = {t_end} = MJD {t_end.mjd}")
-print (f"#  amplitude     = {A} mag")
-print (f"#  period        = {P}")
-print (f"#  delta         = {delta}")
-print (f"#  average mag.  = {mag_mean} mag")
-print (f"#  exposure time = {exptime}")
-print (f"#  overhead      = {overhead}")
-
 # function for sine curve
 def sine_curve (mjd, A, P, delta, mag_mean):
     # calculation of magnitude at given time t
@@ -98,25 +84,52 @@ def sine_curve (mjd, A, P, delta, mag_mean):
 # generation of synthetic data
 #
 
-print (f"#")
-print (f"# date/time, MJD, magnitude, error")
-print (f"#")
-t = t_start
-while (t <= t_end):
-    # MJD
-    mjd = t.mjd
-    # fractional day
-    fractional_day = mjd - int (mjd)
-    # error
-    err = rng.normal (loc=error_mean, scale=error_sigma)
-    # apparent magnitude
-    mag = sine_curve (mjd, A, P, delta, mag_mean) + err
-    # printing data
-    if ( ( (fractional_day >= start_night) \
-           and (fractional_day <= end_night) ) \
-         and ( (fractional_day < start_calib) \
-               or (fractional_day > end_calib) ) ):
-        print (f"{t} {mjd:15.9f} {mag:9.6f} {abs (err):9.6f}")
+# opening file for writing
+with open (file_output, 'w') as fh:
+    # head of data file
+    header = f'#\n' \
+        + f'#\n' \
+        + f'# Synthetic data for period search\n' \
+        + f'#\n' \
+        + f'#\n' \
+        + f'#  input parameters\n' \
+        + f'#\n' \
+        + f'#   start of obs. = {t_start} = MJD {t_start.mjd}\n' \
+        + f'#   end of obs.   = {t_end} = MJD {t_end.mjd}\n' \
+        + f'#   amplitude     = {A} mag\n' \
+        + f'#   period        = {P}\n' \
+        + f'#   delta         = {delta}\n' \
+        + f'#   average mag.  = {mag_mean} mag\n' \
+        + f'#   exposure time = {exptime}\n' \
+        + f'#   overhead      = {overhead}\n' \
+        + f'#   mag error     = {error_sigma}\n' \
+        + f'#\n' \
+        + f'#  data format\n' \
+        + f'#\n' \
+        + f'#   date/time, MJD, magnitude, magnitude error\n' \
+        + f'#\n'
+    # writing input parameters to file
+    fh.write (header)
 
-    # calculation of time of next exposure
-    t += interval + rng.uniform (0.0, 60.0) * u_sec
+    # initialisation of time
+    t = t_start
+
+    while (t <= t_end):
+        # MJD
+        mjd = t.mjd
+        # fractional day
+        fractional_day = mjd - int (mjd)
+        # error
+        err = rng.normal (loc=error_mean, scale=error_sigma)
+        # apparent magnitude
+        mag = sine_curve (mjd, A, P, delta, mag_mean) + err
+        # printing data
+        if ( ( (fractional_day >= start_night) \
+               and (fractional_day <= end_night) ) \
+             and ( (fractional_day < start_calib) \
+                   or (fractional_day > end_calib) ) ):
+            record = f'{t} {mjd:15.9f} {mag:9.6f} {abs (err):9.6f}\n'
+            fh.write (record)
+
+        # calculation of time of next exposure
+        t += interval + rng.uniform (0.0, 60.0) * u_sec
