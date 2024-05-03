@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:16:48 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 10:42:11 (UT+8) daisuke>
 #
 
 # importing matplotlib module
@@ -12,10 +12,10 @@ import matplotlib.backends.backend_agg
 import numpy
 
 # data file name
-file_data = 'ai2023_s12_00_00.data'
+file_data = 'appy_s12_00_00.data'
 
 # output file name
-file_output = 'ai2023_s12_00_01.png'
+file_output = 'appy_s12_00_01.png'
 
 # MJD offset
 mjd_offset = 60000.0
