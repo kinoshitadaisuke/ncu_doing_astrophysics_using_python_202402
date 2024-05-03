@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:18:42 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 12:01:24 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,10 +15,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # input data file
-file_input = 'ai2023_s12_02_02.data'
+file_input = 'appy_s12_02_02.data'
 
 # output figure file
-file_output = 'ai2023_s12_02_08.png'
+file_output = 'appy_s12_02_08.png'
 
 # range of data for fitting
 x_min = 3.1700
