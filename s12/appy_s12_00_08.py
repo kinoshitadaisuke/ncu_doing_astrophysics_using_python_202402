@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:17:25 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 10:59:16 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -12,13 +12,13 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file name
-file_input = 'ai2023_s12_00_00.data'
+file_input = 'appy_s12_00_00.data'
 
 # output file name
-file_output = 'ai2023_s12_00_08.png'
+file_output = 'appy_s12_00_08.png'
 
 # best fit period (day)
-p_best = 2.0012 / 24
+p_best = 2.0010 / 24
 
 # empty numpy arrays for storing data
 data_mjd   = numpy.array ([])
@@ -61,7 +61,7 @@ ax.invert_yaxis ()
 # plotting data
 ax.plot (data_phase, data_mag, \
          linestyle='None', marker='o', markersize=3, color='blue', \
-         label='lightcurve constructed by the best fit period $P = 2.0012$ hr')
+         label='lightcurve constructed by the best fit period $P = 2.0010$ hr')
 ax.legend ()
 
 # saving the plot into a file
