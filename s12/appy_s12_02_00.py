@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:18:09 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 11:42:19 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_input = '201498.tb2.txt'
 
 # output file
-file_output = 'ai2023_s12_02_00.png'
+file_output = 'appy_s12_02_00.pdf'
 
 # numpy arrays to store data
 data_jd      = numpy.array ([])
