@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:21:44 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 13:49:50 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_input = 'linear/4672469.dat'
 
 # output file name
-file_output = 'ai2023_s12_07_00.png'
+file_output = 'appy_s12_07_00.png'
 
 # empty numpy arrays for storing data
 data_mjd = numpy.array ([])
