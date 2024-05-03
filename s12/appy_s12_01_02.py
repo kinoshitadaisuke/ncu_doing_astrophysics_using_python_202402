@@ -1,17 +1,17 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:17:42 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 11:16:50 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # input file name
-file_input = 'ai2023_s12_01_00.data'
+file_input = 'appy_s12_01_00.data'
 
 # output file name
-file_output = 'ai2023_s12_01_02.data'
+file_output = 'appy_s12_01_02.data'
 
 # shortest trial period in minute and in day
 period_min_min = 10.0
@@ -59,12 +59,12 @@ with open (file_output, 'w') as fh_out:
     header  = f"#\n"
     header += f"# parameters for PDM analysis\n"
     header += f"#\n"
-    header += f"# input file = {file_input}\n"
-    header += f"# output file = {file_output}\n"
-    header += f"# shortest trial period = {period_min_min} min\n"
-    header += f"# longest trial period = {period_max_min} min\n"
+    header += f"# input file                = {file_input}\n"
+    header += f"# output file               = {file_output}\n"
+    header += f"# shortest trial period     = {period_min_min} min\n"
+    header += f"# longest trial period      = {period_max_min} min\n"
     header += f"# step size of trial period = {step_min} min\n"
-    header += f"# number of bins = {n_bins}\n"
+    header += f"# number of bins            = {n_bins}\n"
     header += f"#\n"
     header += f"# results of PDM analysis\n"
     header += f"#\n"
