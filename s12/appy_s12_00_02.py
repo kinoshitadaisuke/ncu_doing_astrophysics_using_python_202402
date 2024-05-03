@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:16:54 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 10:44:17 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -19,10 +19,10 @@ u_hr  = astropy.units.hr
 u_day = astropy.units.day
 
 # data file name
-file_data = 'ai2023_s12_00_00.data'
+file_data = 'appy_s12_00_00.data'
 
 # output file name
-file_output = 'ai2023_s12_00_02.png'
+file_output = 'appy_s12_00_02.png'
 
 # trial period
 p_hr = 1.0 * u_hr
