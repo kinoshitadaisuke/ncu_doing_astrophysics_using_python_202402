@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:19:14 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 12:18:37 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_input = 'linear/4672469.dat'
 
 # output file name
-file_output = 'ai2023_s12_03_03.data'
+file_output = 'appy_s12_03_03.data'
 
 # shortest trial period
 period_min_min = 10.0
