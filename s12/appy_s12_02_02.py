@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/02 08:18:18 (UT+8) daisuke>
+# Time-stamp: <2024/05/03 11:46:23 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_input = '201498.tb2.txt'
 
 # output file name
-file_output = 'ai2023_s12_02_02.data'
+file_output = 'appy_s12_02_02.data'
 
 # shortest trial period in minute and in day
 period_min_min = 10.0
