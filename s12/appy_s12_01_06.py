@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/05 16:20:25 (UT+8) daisuke>
+# Time-stamp: <2024/05/05 16:27:19 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -18,7 +18,7 @@ import matplotlib.backends.backend_agg
 file_input = 'appy_s12_01_02.data'
 
 # output figure file
-file_output = 'appy_s12_01_06.pdf'
+file_output = 'appy_s12_01_06.png'
 
 # range of data for fitting
 x_min = 7.4
