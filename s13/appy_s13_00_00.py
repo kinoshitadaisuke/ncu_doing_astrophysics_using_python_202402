@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:32:22 (UT+8) daisuke>
+# Time-stamp: <2024/05/09 09:29:52 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -54,19 +54,25 @@ path_output = pathlib.Path (file_output)
 # checking output file name
 if (file_output == ''):
     # printing message
-    print ("You need to specify output file name.")
+    print (f'ERROR:')
+    print (f'ERROR: You need to specify output file name.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 # output file must be a FITS file
 if not (path_output.suffix == '.fits'):
     # printing message
-    print ("Output file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("Output file exists. Exiting...")
+    print (f'ERROR:')
+    print (f'ERROR: Output file exists. Exiting...')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -80,16 +86,16 @@ now = datetime.datetime.now ().isoformat ()
 command = sys.argv[0]
 
 # printing message
-print ("#")
-print ("# input parameters")
-print ("#")
-print ("#  image size                = %d x %d" % (image_size_x, image_size_y) )
-print ("#  mean sky background level = %f ADU" % sky_background_level)
-print ("#  noise level (stddev)      = %f ADU" % noise_level)
-print ("#")
+print (f'#')
+print (f'# input parameters')
+print (f'#')
+print (f'#  image size                = {image_size_x} x {image_size_y}')
+print (f'#  mean sky background level = {sky_background_level} ADU')
+print (f'#  noise level (stddev)      = {noise_level} ADU')
+print (f'#')
 
 # printing status
-print ("# now, generating image...")
+print (f'# now, generating image...')
 
 # generating sky background
 image_background \
@@ -99,32 +105,31 @@ image_background \
                                            stddev=noise_level)
 
 # printing status
-print ("# finished generating image!")
+print (f'# finished generating image!')
 
 # printing status
-print ("# now, generating FITS header...")
+print (f'# now, generating FITS header...')
 
 # preparing a FITS header
 header = astropy.io.fits.PrimaryHDU ().header
 
 # adding comments to the header
-header['history'] = "FITS file created by the command \"%s\"" % (command)
-header['history'] = "Updated on %s" % (now)
-header['comment'] = "synthetic astronomical image simulating sky background"
-header['comment'] = "Options given:"
-header['comment'] = "  image size = %d x %d" % (image_size_x, image_size_y)
-header['comment'] = "  mean sky background level = %f ADU" \
-    % (sky_background_level)
-header['comment'] = "  noise level  = %f ADU" % (noise_level)
+header['history'] = f'FITS file created by the command "{command}"'
+header['history'] = f'Updated on {now}'
+header['comment'] = f'synthetic astronomical image simulating sky background'
+header['comment'] = f'Options given:'
+header['comment'] = f'  image size = {image_size_x} x {image_size_y}'
+header['comment'] = f'  mean sky background level = {sky_background_level} ADU'
+header['comment'] = f'  noise level  = {noise_level} ADU'
 
 # printing status
-print ("# finished generating FITS header!")
+print (f'# finished generating FITS header!')
 
 # printing status
-print ("# now, writing output FITS file...")
+print (f'# now, writing output FITS file...')
 
 # writing a FITS file
 astropy.io.fits.writeto (file_output, image_background, header=header)
 
 # printing status
-print ("# finished writing output FITS file!")
+print (f'# finished writing output FITS file!')
