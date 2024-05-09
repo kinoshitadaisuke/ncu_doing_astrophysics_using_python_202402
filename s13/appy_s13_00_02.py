@@ -1,85 +1,125 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:32:32 (UT+8) daisuke>
+# Time-stamp: <2024/05/09 09:40:26 (UT+8) daisuke>
 #
 
 # importing argparse module
 import argparse
 
-# importing astropy module
-import astropy.io.fits
-import astropy.wcs
-import astropy.visualization
+# importing pathlib module
+import pathlib
 
-# importing matplotlib module
-import matplotlib.figure
-import matplotlib.backends.backend_agg
+# importing numpy module
+import numpy
+import numpy.ma
+
+# importing astropy module
+import astropy
+import astropy.io.fits
 
 # construction pf parser object
-descr  = 'Making a PNG file from a FITS file'
+descr  = 'calculating statistical information of pixel values in FITS files'
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
-parser.add_argument ('-i', '--input', \
-                     help='input FITS file')
-parser.add_argument ('-o', '--output', \
-                     help='output PNG file')
-parser.add_argument ('-t', '--title', \
-                     help='title of output image')
-parser.add_argument ('-c', '--cmap', default='gray', \
-                     help='colour map (default: gray)')
-parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
-                     help='resolution of output image in DPI (default: 150)')
-parser.add_argument ('-w', '--wcs', action='store_true', default=False, \
-                     help='use WCS (default: False)')
+choices_rejection = ['NONE', 'sigclip']
+parser.add_argument ('-r', '--rejection', default='NONE', \
+                     choices=choices_rejection, \
+                     help='rejection algorithm (default: NONE)')
+parser.add_argument ('-t', '--threshold', type=float, default=4.0, \
+                     help='threshold for sigma clipping (default: 4.0)')
+parser.add_argument ('-n', '--maxiters', type=int, default=10, \
+                     help='maximum number of iterations (default: 10)')
+parser.add_argument ('files', nargs='+', help='FITS files')
 
 # command-line argument analysis
 args = parser.parse_args ()
 
 # input parameters
-file_input     = args.input
-file_output    = args.output
-title          = args.title
-colourmap      = args.cmap
-resolution_dpi = args.resolution
-use_wcs        = args.wcs
+rejection  = args.rejection
+threshold  = args.threshold
+maxiters   = args.maxiters
+list_files = args.files
 
-# opening FITS file
-with astropy.io.fits.open (file_input) as hdu_list:
-    # printing HDU information
-    print (hdu_list.info ())
+# printing information
+print (f'# Input parameters')
+print (f'#   rejection algorithm = {rejection}')
+if not (rejection == 'NONE'):
+    print (f'#   threshold of sigma-clipping  = {threshold}')
+    print (f'#   maximum number of iterations = {maxiters}')
+
+# printing header
+print (f'#')
+print (f'# {"file name":25s} {"npix":>8s} {"mean":>8s} {"median":>8s}', \
+       f'{"stddev":>7s} {"min":>8s} {"max":>8s}')
+print (f'#')
+
+# scanning files
+for file_fits in list_files:
+    # making pathlib object
+    path_fits = pathlib.Path (file_fits)
     
-    # reading FITS header, WCS information, and image data
-    header = hdu_list[0].header
-    wcs    = astropy.wcs.WCS (header)
-    image  = hdu_list[0].data
+    # if the file is not a FITS file, then skip
+    if not (path_fits.suffix == '.fits'):
+        # printing message
+        print (f'# WARNING:')
+        print (f'# WARNING: skipping file "{file_fits}"...')
+        print (f'# WARNING:')
+        # skipping
+        continue
 
-# making objects "fig" and "ax"
-fig    = matplotlib.figure.Figure ()
-canvas = matplotlib.backends.backend_agg.FigureCanvasAgg (fig)
-if (use_wcs):
-    ax = fig.add_subplot (111, projection=wcs)
-else:
-    ax = fig.add_subplot (111)
+    # opening FITS file
+    with astropy.io.fits.open (file_fits) as hdu_list:
+        # reading header of primary HDU
+        header = hdu_list[0].header
+        # reading image of primary HDU
+        data0 = hdu_list[0].data
+    
+    # calculations
 
-# axes
-ax.set_title (title)
-if (use_wcs):
-    ax.set_xlabel ('Right Ascension')
-    ax.set_ylabel ('Declination')
-else:
-    ax.set_xlabel ('X [pixel]')
-    ax.set_ylabel ('Y [pixel]')
+    # for no rejection algorithm
+    if (rejection == 'NONE'):
+        # making a masked array
+        data1 = numpy.ma.array (data0, mask=False)
+    # for sigma clipping algorithm
+    elif (rejection == 'sigclip'):
+        data1 = numpy.ma.array (data0, mask=False)
+        # iterations
+        for j in range (maxiters):
+            # number of usable pixels of previous iterations
+            npix_prev = len (numpy.ma.compressed (data1) )
+            # calculation of median
+            median = numpy.ma.median (data1)
+            # calculation of standard deviation
+            stddev = numpy.ma.std (data1)
+            # lower threshold
+            low = median - threshold * stddev
+            # higher threshold
+            high = median + threshold * stddev
+            # making a mask
+            mask = (data1 < low) | (data1 > high)
+            # making a masked array
+            data1 = numpy.ma.array (data0, mask=mask)
+            # number of usable pixels
+            npix_now = len (numpy.ma.compressed (data1) )
+            # leaving the loop, if number of usable pixels do not change
+            if (npix_now == npix_prev):
+                break
+        
+    # calculation of mean, median, stddev, min, and max
+    mean   = numpy.ma.mean (data1)
+    median = numpy.ma.median (data1)
+    stddev = numpy.ma.std (data1)
+    vmin   = numpy.ma.min (data1)
+    vmax   = numpy.ma.max (data1)
 
-# plotting image
-norm = astropy.visualization.mpl_normalize.ImageNormalize \
-    ( stretch=astropy.visualization.HistEqStretch (image) )
-im = ax.imshow (image, origin='lower', cmap=colourmap, norm=norm)
-fig.colorbar (im)
+    # number of pixels
+    npix = len (data1.compressed () )
 
-# printing a message
-print (f'{file_input} ==> {file_output}')
+    # file name
+    filename = path_fits.name
 
-# saving file
-fig.savefig (file_output, dpi=resolution_dpi)
+    # printing result
+    print (f'{filename:27s} {npix:8d} {mean:8.2f} {median:8.2f}', \
+           f'{stddev:7.2f} {vmin:8.2f} {vmax:8.2f}')
