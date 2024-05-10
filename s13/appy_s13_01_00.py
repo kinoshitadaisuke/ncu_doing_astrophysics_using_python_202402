@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:32:53 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 12:27:25 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -77,21 +77,27 @@ if not (path_input.suffix == '.fits'):
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of output file name
 if not (path_output.suffix == '.fits'):
     # printing message
-    print ("ERROR: Output file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -128,16 +134,17 @@ source_mask = image_segmentation.make_source_mask (footprint=footprint)
 image_masked = numpy.ma.array (image, mask=source_mask)
 
 # adding comments to the header
-header['history'] = "FITS file created by the command \"%s\"" % (sys.argv[0])
-header['history'] = "Updated on %s" % (now)
-header['comment'] = "source detection and masking"
-header['comment'] = "Options given:"
-header['comment'] = "  sigma_sky   = %f [sigma]" % (sigma_sky)
-header['comment'] = "  sigma_det   = %f [sigma]" % (sigma_det)
-header['comment'] = "  npixels     = %d [pixel]" % (npixels)
-header['comment'] = "  dilate_size = %d [pixel]" % (dilate_size)
-header['comment'] = "  maxiters    = %d" % (maxiters)
+header['history'] = f'FITS file created by the command "{sys.argv[0]}"'
+header['history'] = f'Updated on {now}'
+header['comment'] = f'source detection and masking'
+header['comment'] = f'Options given:'
+header['comment'] = f'  sigma_sky   = {sigma_sky} [sigma]'
+header['comment'] = f'  sigma_det   = {sigma_det} [sigma]'
+header['comment'] = f'  npixels     = {npixels} [pixel]'
+header['comment'] = f'  dilate_size = {dilate_size} [pixel]'
+header['comment'] = f'  maxiters    = {maxiters}'
 
 # writing a FITS file
-astropy.io.fits.writeto (file_output, image_masked.filled (fill_value=0.0), \
+astropy.io.fits.writeto (file_output, \
+                         image_masked.filled (fill_value=0.0), \
                          header=header)
