@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:59 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 13:22:33 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -84,28 +84,36 @@ path_output = pathlib.Path (file_output)
 # check of input file name
 if not (path_input.suffix == '.fits'):
     # printing message
-    print ("ERROR: Input file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of output file name
 if not (path_output.suffix == '.cat'):
     # printing message
-    print ("ERROR: Output file must be '.cat' file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be ".cat" file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of input file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
