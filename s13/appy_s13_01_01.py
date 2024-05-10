@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:32:56 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 12:32:16 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -66,14 +66,18 @@ path_input  = pathlib.Path (file_input)
 # check of output file name
 if not (path_input.suffix == '.fits'):
     # printing message
-    print ("ERROR: Input file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
