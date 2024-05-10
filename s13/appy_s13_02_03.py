@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:37 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 13:25:52 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -36,21 +36,27 @@ path_catalogue = pathlib.Path (file_catalogue)
 # check of catalogue file name
 if (file_catalogue == ''):
     # printing message
-    print ("ERROR: Catalogue file name must be specified.")
+    print (f'ERROR:')
+    print (f'ERROR: Catalogue file name must be specified.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of catalogue file
 if not (path_catalogue.exists () ):
     # printing message
-    print ("ERROR: Catalogue file '%s' does not exist." % (file_catalogue) )
+    print (f'ERROR:')
+    print (f'ERROR: Catalogue file "{file_catalogue}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of catalogue file
 if not (path_catalogue.suffix == '.cat' ):
     # printing message
-    print ("ERROR: Input file must be '.cat' file." % (file_catalogue) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be ".cat" file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
