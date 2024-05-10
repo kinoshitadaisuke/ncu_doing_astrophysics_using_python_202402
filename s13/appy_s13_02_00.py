@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:13 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 13:00:40 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -57,6 +57,8 @@ parser.add_argument ('-a', '--kernel-array-size', type=int, default=5, \
                      help='Gaussian kernel array size (default: 5)')
 parser.add_argument ('-n', '--npixels', type=int, default=10, \
                      help='number of connected pixels (default: 10)')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution of output image in DPI (default: 150)')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -74,6 +76,7 @@ threshold_rms = args.threshold
 fwhm_kernel   = args.kernel
 array_size    = args.kernel_array_size
 npixels       = args.npixels
+resolution    = args.resolution
 
 # making pathlib objects
 path_input  = pathlib.Path (file_input)
@@ -82,14 +85,18 @@ path_output = pathlib.Path (file_output)
 # check of input file name
 if not (path_input.suffix == '.fits'):
     # printing message
-    print ("ERROR: Input file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -97,14 +104,18 @@ if not (path_input.exists ()):
 if not ( (path_output.suffix == '.eps') or (path_output.suffix == '.pdf') \
          or (path_output.suffix == '.png') or (path_output.suffix == '.ps') ):
     # printing message
-    print ("ERROR: Output file must be either EPS or PDF or PNG or PS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be either EPS or PDF or PNG or PS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -169,4 +180,4 @@ im2 = ax2.imshow (image_segmented, origin='lower', \
 ax2.set_title ('Segmentation Image')
 
 # writing to a file
-fig.savefig (file_output, dpi=150)
+fig.savefig (file_output, dpi=resolution)
