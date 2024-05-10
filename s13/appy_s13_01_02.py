@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:23 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 12:39:24 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -67,28 +67,36 @@ path_output = pathlib.Path (file_output)
 # check of input file name
 if not (path_input.suffix == '.fits'):
     # printing message
-    print ("ERROR: Input file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of output file name
 if not (path_output.suffix == '.fits'):
     # printing message
-    print ("ERROR: Output file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -115,14 +123,15 @@ image_skybg = photutils.background.Background2D \
      sigma_clip=sigma_clip, bkg_estimator=skybg_estimator)
 
 # adding comments to the header
-header['history'] = "FITS file created by the command \"%s\"" % (sys.argv[0])
-header['history'] = "Updated on %s" % (now)
-header['comment'] = "making 2-D sky background map image"
-header['comment'] = "Options given:"
-header['comment'] = "  sigma_sky   = %f [sigma]" % (sigma_sky)
-header['comment'] = "  maxiters    = %d" % (maxiters)
-header['comment'] = "  box_size    = %d" % (box_size)
-header['comment'] = "  filter_size = %d" % (filter_size)
+header['history'] = f'FITS file created by the command "{sys.argv[0]}"'
+header['history'] = f'Updated on {now}'
+header['comment'] = f'making 2-D sky background map image'
+header['comment'] = f'Options given:'
+header['comment'] = f'  sigma_sky   = {sigma_sky} [sigma]'
+header['comment'] = f'  maxiters    = {maxiters}'
+header['comment'] = f'  box_size    = {box_size}'
+header['comment'] = f'  filter_size = {filter_size}'
 
 # writing a FITS file
-astropy.io.fits.writeto (file_output, image_skybg.background, header=header)
+astropy.io.fits.writeto (file_output, \
+                         image_skybg.background, header=header)
