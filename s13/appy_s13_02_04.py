@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:40 (UT+8) daisuke>
+# Time-stamp: <2024/05/10 13:30:36 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -34,6 +34,8 @@ parser.add_argument ('-o', '--output-file', default='', \
                      help='output file name')
 parser.add_argument ('-r', '--radius', type=float, default=10.0, \
                      help='radius of aperture in pixel (default: 10)')
+parser.add_argument ('-d', '--resolution', type=float, default=150.0, \
+                     help='resolution of output image in DPI (default: 150)')
 
 # command-line argument analysis
 args = parser.parse_args ()
@@ -43,6 +45,7 @@ file_catalogue = args.catalogue_file
 file_input     = args.input_file
 file_output    = args.output_file
 radius         = args.radius
+resolution     = args.resolution
 
 # making pathlib objects
 path_input     = pathlib.Path (file_input)
@@ -52,14 +55,18 @@ path_output    = pathlib.Path (file_output)
 # check of input file name
 if not (path_input.suffix == '.fits'):
     # printing message
-    print ("ERROR: Input file must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file must be a FITS file.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of catalogue file name
 if (file_catalogue == ''):
     # printing message
-    print ("Catalogue file name must be specified.")
+    print (f'ERROR:')
+    print (f'Catalogue file name must be specified.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -67,28 +74,36 @@ if (file_catalogue == ''):
 if not ( (path_output.suffix == '.eps') or (path_output.suffix == '.pdf') \
          or (path_output.suffix == '.png') or (path_output.suffix == '.ps')):
     # printing message
-    print ("ERROR: Output file must be either EPS, PDF, PNG, or PS.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be either EPS, PDF, PNG, or PS.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of catalogue file
 if not (path_catalogue.exists () ):
     # printing message
-    print ("ERROR: Catalogue file '%s' does not exist." % (file_catalogue) )
+    print (f'ERROR:')
+    print (f'ERROR: Catalogue file "{file_catalogue}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -139,4 +154,4 @@ for i in range ( len (list_x) ):
     ax.add_patch (source)
 
 # saving file
-fig.savefig (file_output, dpi=150)
+fig.savefig (file_output, dpi=resolution)
