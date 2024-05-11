@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:55 (UT+8) daisuke>
+# Time-stamp: <2024/05/11 19:04:28 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -58,7 +58,9 @@ path_output = pathlib.Path (file_output)
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -73,4 +75,5 @@ with open (file_output, 'w') as fh_out:
     # for each object
     for i in range ( len (position_x) ):
         # writing x, y, flux to file
-        fh_out.write ("%f %f %f\n" % (position_x[i], position_y[i], flux[i]) )
+        record = f'{position_x[i]:8.3f} {position_y[i]:8.3f} {flux[i]:10.3f}\n'
+        fh_out.write (record)
