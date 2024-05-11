@@ -1,11 +1,17 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:05 (UT+8) daisuke>
+# Time-stamp: <2024/05/11 19:34:15 (UT+8) daisuke>
 #
 
 # importing argparse module
 import argparse
+
+# importing pathlib module
+import pathlib
+
+# import sys module
+import sys
 
 # importing astropy module
 import astropy.io.fits
@@ -50,6 +56,47 @@ title2         = args.title2
 colourmap      = args.cmap
 resolution_dpi = args.resolution
 use_wcs        = args.wcs
+
+# making pathlib objects
+path_fits1 = pathlib.Path (file_fits1)
+path_fits2 = pathlib.Path (file_fits2)
+
+# check of extension of input file 1
+if not (path_fits1.suffix == '.fits'):
+    # printing message
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_fits1}" is not a FITS file!')
+    print (f'ERROR:')
+    # stopping the script
+    sys.exit (0)
+
+# check of extension of input file 2
+if not (path_fits2.suffix == '.fits'):
+    # printing message
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_fits2}" is not a FITS file!')
+    print (f'ERROR:')
+    # stopping the script
+    sys.exit (0)
+
+# existence check of input file 1
+if not (path_fits1.exists ()):
+    # printing message
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_fits1}" does not exist!')
+    print (f'ERROR:')
+    # stopping the script
+    sys.exit (0)
+    
+# existence check of input file 2
+if not (path_fits2.exists ()):
+    # printing message
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_fits2}" does not exist!')
+    print (f'ERROR:')
+    # stopping the script
+    sys.exit (0)
+    
 
 # function to read a FITS file
 def read_fits (file_fits):
