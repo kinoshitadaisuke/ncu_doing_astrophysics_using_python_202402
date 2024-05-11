@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:13 (UT+8) daisuke>
+# Time-stamp: <2024/05/11 20:06:54 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -40,6 +40,8 @@ parser = argparse.ArgumentParser (description=descr)
 # adding arguments
 parser.add_argument ('-o', '--file-output', default='', \
                      help='output figure file')
+parser.add_argument ('-r', '--resolution', type=float, default=150.0, \
+                     help='resolution of output image in DPI (default: 150)')
 parser.add_argument ('catalogue1', nargs=1, help='catalogue file 1')
 parser.add_argument ('catalogue2', nargs=1, help='catalogue file 2')
 parser.add_argument ('fits1', nargs=1, help='FITS file 1')
@@ -54,6 +56,7 @@ file_cat2  = args.catalogue2[0]
 file_fits1 = args.fits1[0]
 file_fits2 = args.fits2[0]
 file_fig   = args.file_output
+resolution = args.resolution
 
 # making pathlib objects
 path_cat1  = pathlib.Path (file_cat1)
@@ -66,52 +69,64 @@ path_fig   = pathlib.Path (file_fig)
 if not ( (path_fig.suffix == '.eps') or (path_fig.suffix == '.pdf') \
          or (path_fig.suffix == '.png') or (path_fig.suffix == '.ps') ):
     # printing message
-    print ("Figure file name must be either EPS, PDF, PNG, or PS.")
+    print (f'ERROR:')
+    print (f'ERROR: Figure file name must be either EPS, PDF, PNG, or PS.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of catalogue file name
 if not ( (path_cat1.suffix == '.cat') and (path_cat2.suffix == '.cat') ):
     # printing message
-    print ("Input file must be a catalogue file (*.cat).")
-    print ("catalogue file 1 = %s" % file_cat1)
-    print ("catalogue file 2 = %s" % file_cat2)
+    print (f'ERROR: Input file must be a catalogue file (*.cat).')
+    print (f'ERROR: catalogue file 1 = "{file_cat1}"')
+    print (f'ERROR: catalogue file 2 = "{file_cat2}"')
     # exit
     sys.exit ()
 
 # check of FITS file name
 if not ( (path_fits1.suffix == '.fits') and (path_fits2.suffix == '.fits') ):
     # printing message
-    print ("Input file must be a FITS file (*.fits).")
-    print ("FITS file 1 = %s" % file_fits1)
-    print ("FITS file 2 = %s" % file_fits2)
+    print (f'ERROR: Input file must be a FITS file (*.fits).')
+    print (f'ERROR: FITS file 1 = "{file_fits1}"')
+    print (f'ERROR: FITS file 2 = "{file_fits2}"')
     # exit
     sys.exit ()
 
 # existence checks
 if not (path_cat1.exists ()):
     # printing message
-    print ("ERROR: file '%s' does not exist." % file_cat1)
+    print (f'ERROR:')
+    print (f'ERROR: file "{file_cat1}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 if not (path_cat2.exists ()):
     # printing message
-    print ("ERROR: file '%s' does not exist." % file_cat2)
+    print (f'ERROR:')
+    print (f'ERROR: file "{file_cat2}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 if not (path_fits1.exists ()):
     # printing message
-    print ("ERROR: file '%s' does not exist." % file_fits1)
+    print (f'ERROR:')
+    print (f'ERROR: file "{file_fits1}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 if not (path_fits2.exists ()):
     # printing message
-    print ("ERROR: file '%s' does not exist." % file_fits2)
+    print (f'ERROR:')
+    print (f'ERROR: file "{file_fits2}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 if (path_fig.exists ()):
     # printing message
-    print ("ERROR: file '%s' exists." % file_fig)
+    print (f'ERROR:')
+    print (f'ERROR: file "{file_fig}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -140,8 +155,8 @@ list_source1_x = list (table_source1['xcentroid'])
 list_source1_y = list (table_source1['ycentroid'])
 list_source2_x = list (table_source2['xcentroid'])
 list_source2_y = list (table_source2['ycentroid'])
-position_1 = numpy.transpose ( (list_source1_x, list_source1_y) )
-position_2 = numpy.transpose ( (list_source2_x, list_source2_y) )
+position_1     = numpy.transpose ( (list_source1_x, list_source1_y) )
+position_2     = numpy.transpose ( (list_source2_x, list_source2_y) )
 
 # finding star-to-star matching
 transf, (list_matched_2, list_matched_1) \
@@ -152,34 +167,32 @@ list_matched_2_aligned \
     = astroalign.matrix_transform (list_matched_2, transf.params)
 
 # printing results
-print ("#")
-print ("# result of image alignment")
-print ("#")
-print ("#   date/time = %s" % now)
-print ("#")
-print ("# input files")
-print ("#")
-print ("#   catalogue file 1 = %s" % file_cat1)
-print ("#   catalogue file 2 = %s" % file_cat2)
-print ("#")
-print ("# transformation matrix")
-print ("#")
-print ("# [")
-print ("#   [%f, %f, %f]," \
-       % (transf.params[0][0], transf.params[0][1], transf.params[0][2]) )
-print ("#   [%f, %f, %f]," \
-       % (transf.params[1][0], transf.params[1][1], transf.params[1][2]) )
-print ("#   [%f, %f, %f]" \
-       % (transf.params[2][0], transf.params[2][1], transf.params[2][2]) )
-print ("# ]")
-print ("#")
-print ("#")
-print ("# list of matched stars")
-print ("#")
+print (f'#')
+print (f'# result of image alignment')
+print (f'#')
+print (f'#   date/time = {now}')
+print (f'#')
+print (f'# input files')
+print (f'#')
+print (f'#   catalogue file 1 = {file_cat1}')
+print (f'#   catalogue file 2 = {file_cat2}')
+print (f'#')
+print (f'# transformation matrix')
+print (f'#')
+print (f'# [')
+print (f'#  [{transf.params[0][0]:11.6f}, {transf.params[0][1]:11.6f}, {transf.params[0][2]:11.6f}],')
+print (f'#  [{transf.params[1][0]:11.6f}, {transf.params[1][1]:11.6f}, {transf.params[1][2]:11.6f}],')
+print (f'#  [{transf.params[2][0]:11.6f}, {transf.params[2][1]:11.6f}, {transf.params[2][2]:11.6f}]')
+print (f'# ]')
+print (f'#')
+print (f'#')
+print (f'# list of matched stars')
+print (f'#')
 for i in range ( len (list_matched_1) ):
-    print ("(%10.4f, %10.4f) on 1st image ==> (%10.4f, %10.4f) on 2nd image" \
-           % (list_matched_1[i][0], list_matched_1[i][1], \
-              list_matched_2[i][0], list_matched_2[i][1]) )
+    print (f'({list_matched_1[i][0]:8.3f}, {list_matched_1[i][1]:8.3f})', \
+           f'on 1st image', \
+           f'==> ({list_matched_2[i][0]:8.3f}, {list_matched_2[i][1]:8.3f})', \
+           f'on 2nd image')
 
 # reading FITS files
 (header1, image1) = read_fits (file_fits1)
@@ -225,4 +238,4 @@ ax2.set_title ('Second Image')
 
 # writing to a file
 fig.tight_layout ()
-fig.savefig (file_fig, dpi=150)
+fig.savefig (file_fig, dpi=resolution)
