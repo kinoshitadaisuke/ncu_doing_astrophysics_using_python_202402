@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:01 (UT+8) daisuke>
+# Time-stamp: <2024/05/11 19:24:39 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -12,6 +12,9 @@ import sys
 
 # importing pathlib module
 import pathlib
+
+# importing datetime module
+import datetime
 
 # importing numpy module
 import numpy
@@ -61,6 +64,12 @@ size_y      = args.size_y
 # image shape
 image_shape = (size_x, size_y)
 
+# date/time
+now = datetime.datetime.now ().isoformat ()
+
+# command name
+command = sys.argv[0]
+
 # check of input file name
 if (file_input == ''):
     print ("Input file name must be specified.")
@@ -68,7 +77,9 @@ if (file_input == ''):
 
 # check of output file name
 if not (file_output[-5:] == '.fits'):
-    print ("Output file name must be a FITS file.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file name must be a FITS file.')
+    print (f'ERROR:')
     sys.exit ()
 
 # making pathlib objects
@@ -78,14 +89,18 @@ path_output = pathlib.Path (file_output)
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -99,6 +114,9 @@ list_flux  = []
 list_psf_x = []
 list_psf_y = []
 list_theta = []
+
+# initialising a variable for number of stars in source list file
+n_stars = 0
 
 # opening file for reading
 with open (file_input, 'r') as fh_in:
@@ -126,6 +144,8 @@ with open (file_input, 'r') as fh_in:
         list_psf_x.append (psf_x)
         list_psf_y.append (psf_y)
         list_theta.append (theta_rad)
+        # adding one to 'n_stars'
+        n_stars += 1
 
 # adding data to astropy table
 table_stars['amplitude'] = list_flux
@@ -148,6 +168,20 @@ image = image_stars + image_sky
 
 # preparing a FITS header
 header = astropy.io.fits.PrimaryHDU ().header
+
+# adding comments to the header
+header['history'] = f'FITS file created by the command "{command}"'
+header['history'] = f'Updated on {now}'
+header['comment'] = f'Synthetic astronomical image with artificial stars'
+header['comment'] = f'Options given:'
+header['comment'] = f'  input source list file   = {file_input}'
+header['comment'] = f'  output FITS file         = {file_output}'
+header['comment'] = f'  image size               = {size_x} x {size_y}'
+header['comment'] = f'  sky background level     = {sky} [ADU]'
+header['comment'] = f'  stddev of sky background = {sky_stddev}'
+header['comment'] = f'  FWHM of stars            = {fwhm} [pixel]'
+header['comment'] = f'  stddev of FWHM           = {fwhm_stddev}'
+header['comment'] = f'Number of stars in source list file: {n_stars} stars'
 
 # writing a FITS file
 astropy.io.fits.writeto (file_output, image, header=header)
