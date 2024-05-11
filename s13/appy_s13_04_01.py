@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:33:58 (UT+8) daisuke>
+# Time-stamp: <2024/05/11 19:10:05 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -54,14 +54,18 @@ rotate_rad = numpy.deg2rad (rotate_deg)
 # check of input file name
 if (file_input == ''):
     # printing message
-    print ("ERROR: Input file name must be specified.")
+    print (f'ERROR:')
+    print (f'ERROR: Input file name must be specified.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # check of output file name
 if (file_output == ''):
     # printing message
-    print ("ERROR: Output file name must be specified.")
+    print (f'ERROR:')
+    print (f'ERROR: Output file name must be specified.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -72,14 +76,18 @@ path_output = pathlib.Path (file_output)
 # existence check of input file
 if not (path_input.exists ()):
     # printing message
-    print ("ERROR: Input file '%s' does not exist." % (file_input) )
+    print (f'ERROR:')
+    print (f'ERROR: Input file "{file_input}" does not exist.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
 # existence check of output file
 if (path_output.exists ()):
     # printing message
-    print ("ERROR: Output file '%s' exists." % (file_output) )
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists.')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -114,6 +122,7 @@ with open (file_input, 'r') as fh_in:
 # writing data to file
 with open (file_output, 'w') as fh_out:
     # for each object
-    for (x, y, flux) in list_new:
+    for (position_x, position_y, flux) in list_new:
         # writing data
-        fh_out.write ("%f %f %f\n" % (x, y, flux) )
+        record = f'{position_x:8.3f} {position_y:8.3f} {flux:10.3f}\n'
+        fh_out.write (record)
