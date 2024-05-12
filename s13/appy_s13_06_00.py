@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:45 (UT+8) daisuke>
+# Time-stamp: <2024/05/12 17:33:04 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -100,17 +100,17 @@ coord_ra_deg  = coord.ra.deg
 coord_dec_deg = coord.dec.deg
     
 # printing coordinate
-print ("Coordinate:")
-print ("  RA:  %s = %f deg" % (coord_ra_str, coord_ra_deg) )
-print ("  Dec: %s = %f deg" % (coord_dec_str, coord_dec_deg) )
+print (f'Coordinate:')
+print (f'  RA:  {coord_ra_str} = {coord_ra_deg} deg')
+print (f'  Dec: {coord_dec_str} = {coord_dec_deg} deg')
 
 # searching image
 list_image = astroquery.skyview.SkyView.get_image_list (position=coord, \
                                                         survey=survey)
 
 # printing image list
-print ("Available images:")
-print (" ", list_image)
+print (f'Available images:')
+print (f' {list_image}')
 
 # getting image
 image = astroquery.skyview.SkyView.get_images (position=coord, survey=survey, \
@@ -122,8 +122,8 @@ header = image0[0].header
 data   = image0[0].data
 
 # adding comments in header
-header['history'] = "image downloaded from %s" % survey
-header['history'] = "image saved on %s" % now
+header['history'] = f'image downloaded from {survey}'
+header['history'] = f'image saved on {now}'
 
 # saving to a FITS file
 astropy.io.fits.writeto (file_output, data, header=header)
