@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/07 08:34:29 (UT+8) daisuke>
+# Time-stamp: <2024/05/12 08:40:07 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -74,7 +74,9 @@ offset_dec_arcmin = args.offset_ra
 # checking target name
 if (target_name == ''):
     # printing error message
-    print ("No target name is given!")
+    print (f'ERROR:')
+    print (f'ERROR: No target name is given!')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 
@@ -84,17 +86,23 @@ path_output = pathlib.Path (file_output)
 # checking output file name
 if (file_output == ''):
     # printing error message
-    print ("No output file name is given!")
+    print (f'ERROR:')
+    print (f'ERROR: No output file name is given!')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 elif not (path_output.suffix == '.fits'):
     # printing error message
-    print ("Output file must be FITS file!")
+    print (f'ERROR:')
+    print (f'ERROR: Output file must be FITS file!')
+    print (f'ERROR:')
     # exit
     sys.exit ()
 if (path_output.exists ()):
     # printing error message
-    print ("Output file '%s' exists!" % file_output)
+    print (f'ERROR:')
+    print (f'ERROR: Output file "{file_output}" exists!')
+    print (f'ERROR:')
     # exit
     sys.exit ()
     
@@ -120,9 +128,9 @@ coord_ra_deg  = coord.ra.deg
 coord_dec_deg = coord.dec.deg
     
 # printing coordinate
-print ("Target Name: %s" % target_name)
-print ("  RA:  %s = %f deg" % (coord_ra_str, coord_ra_deg) )
-print ("  Dec: %s = %f deg" % (coord_dec_str, coord_dec_deg) )
+print (f'Target Name: "{target_name}"')
+print (f'  RA:  {coord_ra_str} = {coord_ra_deg} deg')
+print (f'  Dec: {coord_dec_str} = {coord_dec_deg} deg')
 
 # giving offsets
 coord2_ra_deg  = coord_ra_deg + offset_ra_arcmin / 60.0
@@ -135,17 +143,17 @@ coord2_str = coord2.to_string (style='hmsdms')
 (coord2_ra_str, coord2_dec_str) = coord_str.split ()
 
 # printing coordinate
-print ("Coordinates after giving offsets")
-print ("  RA:  %s = %f deg" % (coord2_ra_str, coord2_ra_deg) )
-print ("  Dec: %s = %f deg" % (coord2_dec_str, coord2_dec_deg) )
+print (f'Coordinates after giving offsets')
+print (f'  RA:  {coord2_ra_str} = {coord2_ra_deg} deg')
+print (f'  Dec: {coord2_dec_str} = {coord2_dec_deg} deg')
 
 # searching image
 list_image = astroquery.skyview.SkyView.get_image_list (position=coord2, \
                                                         survey=survey)
 
 # printing image list
-print ("Available images:")
-print (" ", list_image)
+print (f'Available images:')
+print (f' {list_image}')
 
 # getting image
 image = astroquery.skyview.SkyView.get_images (position=coord2, survey=survey, \
@@ -157,8 +165,8 @@ header = image0[0].header
 data   = image0[0].data
 
 # adding comments in header
-header['history'] = "image downloaded from %s" % survey
-header['history'] = "image saved on %s" % now
+header['history'] = f'image downloaded from {survey}'
+header['history'] = f'image saved on {now}'
 
 # saving to a FITS file
 astropy.io.fits.writeto (file_output, data, header=header)
