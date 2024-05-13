@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/12 10:22:36 (UT+8) daisuke>
+# Time-stamp: <2024/05/13 20:03:40 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -34,20 +34,23 @@ descr  = "searching JWST images available for download"
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
-parser.add_argument ('-r', '--ra', default='00h00m00.000s', \
-                     help='RA of target object (default: 00h00m00.000s)')
-parser.add_argument ('-d', '--dec', default='00d00m00.00s', \
-                     help='Dec of target object (default: 00d00m00.000s)')
-parser.add_argument ('-s', '--radius', type=float, default=1.0, \
+parser.add_argument ('-o', '--output', default='', \
+                     help='output file name')
+parser.add_argument ('-r', '--radius', type=float, default=1.0, \
                      help='search radius in arcmin (default: 1)')
+parser.add_argument ('ra', nargs=1, default='00h00m00.000s', \
+                     help='RA of target object (default: 00h00m00.000s)')
+parser.add_argument ('dec', nargs=1, default='00d00m00.00s', \
+                     help='Dec of target object (default: 00d00m00.000s)')
 
 # command-line argument analysis
 args = parser.parse_args ()
 
 # input parameters
-ra            = args.ra
-dec           = args.dec
+file_output   = args.output
 radius_arcmin = args.radius
+ra            = args.ra[0]
+dec           = args.dec[0]
 
 # units
 u_ha     = astropy.units.hourangle
@@ -78,10 +81,24 @@ jwst = astroquery.esa.jwst.Jwst.cone_search (coordinate=coord, radius=radius, \
 # query result
 query_result = jwst.get_results ()
 
-# printing query result
-print (f'# obs. ID, calib. level, data type, instrument, energy band')
-for i in range (len (query_result)):
-    # if the data product is not image, then skip
-    if (query_result["dataproducttype"][i] != 'image'):
-        continue
-    print (f'{query_result["observationid"][i]:40s} {query_result["calibrationlevel"][i]:2d} {query_result["dataproducttype"][i]:5s} {query_result["instrument_name"][i]:12s} {query_result["energy_bandpassname"][i]:16s}')
+# writing query result
+with open (file_output, 'w') as fh:
+    # writing header
+    header = f'# obs. ID, calib. level, data type, instrument, energy band\n'
+    fh.write (header)
+    for i in range (len (query_result)):
+        # if the data product is not image, then skip
+        if (query_result["dataproducttype"][i] != 'image'):
+            continue
+        # coordinate
+        coord = astropy.coordinates.SkyCoord (query_result["target_ra"][i], \
+                                              query_result["target_dec"][i], \
+                                              unit=(u_deg, u_deg), frame='icrs')
+        # writing data into file
+        record = f'{query_result["observationid"][i]:36s}' \
+            + f' {query_result["calibrationlevel"][i]:2d}' \
+            + f' {query_result["dataproducttype"][i]:5s}' \
+            + f' {query_result["instrument_name"][i]:12s}' \
+            + f' {query_result["energy_bandpassname"][i]:12s}' \
+            + f' {coord.ra.deg:8.3f} {coord.dec.deg:8.3f}\n'
+        fh.write (record)
