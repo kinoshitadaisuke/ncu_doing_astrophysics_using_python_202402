@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/12 17:49:21 (UT+8) daisuke>
+# Time-stamp: <2024/05/14 12:40:37 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -49,4 +49,7 @@ product_list = astroquery.esa.jwst.Jwst.get_product_list (observation_id=obsid)
 # printing product list
 print (f'# file name, product type, calib. level, availability')
 for i in range (len (product_list)):
-    print (f'{product_list["filename"][i]:56s} {product_list["producttype"][i]:10s} {product_list["calibrationlevel"][i]:2d} {product_list["public"][i]}')
+    print (f'{product_list["filename"][i]:56s}', \
+           f'{product_list["producttype"][i]:10s}', \
+           f'{product_list["calibrationlevel"][i]:2d}', \
+           f'{product_list["public"][i]}')
