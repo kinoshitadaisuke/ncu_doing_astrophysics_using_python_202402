@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/20 19:30:01 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 10:46:01 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -15,7 +15,7 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # file name
-file_fig = 'appy_s14_02_05.pdf'
+file_fig = 'appy_s14_02_05.png'
 
 # date/time
 t_str = '2024-07-01T12:00:00'
