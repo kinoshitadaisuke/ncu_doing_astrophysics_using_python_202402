@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:35:52 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 01:21:24 (UT+8) daisuke>
 #
 
 # importing subprocess module
@@ -12,7 +12,7 @@ ffmpeg = 'ffmpeg'
 
 # ffmpeg options
 options_ffmpeg = f'-f image2 -start_number 0 -framerate 30' \
-    + f' -i iss/%04d.png' \
+    + f' -i iss/iss_%04d.png' \
     + f' -an -vcodec libx264 -pix_fmt yuv420p -threads 4'
 
 # output file name
