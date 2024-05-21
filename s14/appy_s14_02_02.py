@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:33:33 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 19:25:43 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -18,14 +18,14 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # file name
-file_fig = 'ai2023_s14_02_02.png'
+file_fig = 'appy_s14_02_02.png'
 
 # target list
 # Neptune and Pluto
 list_obj = ['899', '999']
 
 # start date
-date_start = '1700-02-01'
+date_start = '1800-02-01'
 
 # end date
 date_end   = '2099-12-01'
@@ -81,4 +81,4 @@ ax.plot (datetime64, dist, \
 ax.legend ()
 
 # saving the plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
