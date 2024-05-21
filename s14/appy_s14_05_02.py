@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:34:53 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 20:25:28 (UT+8) daisuke>
 #
 
 # importing datetime module
@@ -53,7 +53,7 @@ with open (file_data, 'r') as fh:
         YYYY       = t_datetime.year
 
         # PNG file name
-        file_png = "%s/%04d.png" % (dir_png, i)
+        file_png = "%s/%s_%04d.png" % (dir_png, dir_png, i)
         
         # making objects "fig" and "canvas"
         fig    = matplotlib.figure.Figure ()
@@ -241,4 +241,4 @@ with open (file_data, 'r') as fh:
         # increment
         i += 1
         if (i % 100 == 0):
-            print (f"progress: {i}")
+            print (f"progress: {i:6d}")
