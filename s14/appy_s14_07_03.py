@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:35:48 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 01:01:09 (UT+8) daisuke>
 #
 
 # importing datetime module
@@ -53,7 +53,7 @@ with open (file_data, 'r') as fh:
         YYYY = t_datetime.year
 
         # PNG file name
-        file_png = "%s/%04d.png" % (dir_png, i)
+        file_png = f'{dir_png}/{dir_png}_{i:04d}.png'
         
         # making objects "fig" and "canvas"
         fig    = matplotlib.figure.Figure ()
@@ -77,6 +77,12 @@ with open (file_data, 'r') as fh:
         ax.set_xticks (numpy.linspace (-5, 5, 11))
         ax.set_yticks (numpy.linspace (-5, 5, 11))
 
+        # making empty lists for storing data
+        asteroids_x = []
+        asteroids_y = []
+        asteroids_z = []
+
+        # reading data
         for j in (
                 list ( range (2 + n_major, len (records) ) )
                 + list ( range (2, n_major + 2) )
@@ -116,9 +122,15 @@ with open (file_data, 'r') as fh:
                 pluto, = ax.plot (x, y, color='slategrey', linestyle='None',
                                   marker='o', markersize=2, label='Pluto')
             else:
-                asteroids, = ax.plot (x, y, color='purple', linestyle='None',
-                                      marker='.', markersize=1,
-                                      label='asteroids')
+                asteroids_x.append (x)
+                asteroids_y.append (y)
+                asteroids_z.append (z)
+
+        # plotting asteroids
+        asteroids, = ax.plot (asteroids_x, asteroids_y, \
+                              color='purple', linestyle='None', \
+                              marker='.', markersize=1, \
+                              label='asteroids')
 
         # showing legend and title
         ax.legend (bbox_to_anchor=(0.0, -0.27), loc='upper left', \
@@ -145,6 +157,12 @@ with open (file_data, 'r') as fh:
         ax.set_xticks (numpy.linspace (-5, 5, 11))
         ax.set_yticks (numpy.linspace (-2, 2, 5))
 
+        # making empty lists for storing data
+        asteroids_x = []
+        asteroids_y = []
+        asteroids_z = []
+
+        # reading data
         for j in (
                 list ( range (2 + n_major, len (records) ) )
                 + list ( range (2, n_major + 2) )
@@ -184,9 +202,15 @@ with open (file_data, 'r') as fh:
                 pluto, = ax.plot (x, z, color='slategrey', linestyle='None',
                                   marker='o', markersize=2, label='Pluto')
             else:
-                asteroids, = ax.plot (x, z, color='purple', linestyle='None',
-                                      marker='.', markersize=1,
-                                      label='asteroids')
+                asteroids_x.append (x)
+                asteroids_y.append (y)
+                asteroids_z.append (z)
+
+        # plotting asteroids
+        asteroids, = ax.plot (asteroids_x, asteroids_z, \
+                              color='purple', linestyle='None', \
+                              marker='.', markersize=1, \
+                              label='asteroids')
 
         # making object "ax"
         ax = fig.add_subplot (224)
@@ -206,6 +230,12 @@ with open (file_data, 'r') as fh:
         ax.set_xticks (numpy.linspace (-5, 5, 11))
         ax.set_yticks (numpy.linspace (-2, 2, 5))
 
+        # making empty lists for storing data
+        asteroids_x = []
+        asteroids_y = []
+        asteroids_z = []
+
+        # reading data
         for j in (
                 list ( range (2 + n_major, len (records) ) )
                 + list ( range (2, n_major + 2) )
@@ -245,9 +275,15 @@ with open (file_data, 'r') as fh:
                 pluto, = ax.plot (y, z, color='slategrey', linestyle='None',
                                   marker='o', markersize=2, label='Pluto')
             else:
-                asteroids, = ax.plot (y, z, color='purple', linestyle='None',
-                                      marker='.', markersize=1,
-                                      label='asteroids')
+                asteroids_x.append (x)
+                asteroids_y.append (y)
+                asteroids_z.append (z)
+
+        # plotting asteroids
+        asteroids, = ax.plot (asteroids_y, asteroids_z, \
+                              color='purple', linestyle='None', \
+                              marker='.', markersize=1, \
+                              label='asteroids')
 
         ax.legend (bbox_to_anchor=(-0.2, -0.4), loc='upper left', \
                    frameon=False, ncol=2, \
@@ -261,4 +297,4 @@ with open (file_data, 'r') as fh:
 
         # printing status
         if (i % 100 == 0):
-            print (f"status: {i}")
+            print (f"status: {i:6d}")
