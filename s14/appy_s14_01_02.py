@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:32:20 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 17:51:13 (UT+8) daisuke>
 #
 
 # importing astropy module
@@ -21,7 +21,7 @@ target = 'Sun'
 obs_site = 'D35'
 
 # date/time
-t  = astropy.time.Time ('2024-01-01T04:00:00', scale='utc', format='isot')
+t  = astropy.time.Time ('2024-07-01T04:00:00', scale='utc', format='isot')
 jd = t.jd
 
 # sending a query to NASA/JPL Horizons system
