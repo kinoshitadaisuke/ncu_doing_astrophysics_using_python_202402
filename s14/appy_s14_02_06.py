@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:33:50 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 19:37:48 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -18,10 +18,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # file name
-file_fig = 'ai2023_s14_02_06.png'
+file_fig = 'appy_s14_02_06.png'
 
 # date/time
-t_str = '2024-01-01T12:00:00'
+t_str = '2024-07-01T12:00:00'
 t     = astropy.time.Time (t_str, scale='utc', format='isot')
 
 # target list
@@ -118,4 +118,4 @@ ax.plot (asteroid_x, asteroid_y, \
 ax.legend (bbox_to_anchor=(1.01, 1.00), loc='upper left', shadow=True)
 
 # saving the plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
