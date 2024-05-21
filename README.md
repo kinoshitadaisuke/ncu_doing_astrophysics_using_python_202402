@@ -1,6 +1,6 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/05/21 15:51:56 (UT+8) daisuke>
+Time-stamp: <2024/05/21 15:54:36 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
 
@@ -81,4 +81,4 @@ git clone https://github.com/kinoshitadaisuke/ncu_doing_astrophysics_using_pytho
 
 ## Video files
 
-[![3-D structure of solar system]()](https://s3b.astro.ncu.edu.tw/appy_202402/video/solsys3d_202401.mp4 "3-D structure of solar system")
+- https://s3b.astro.ncu.edu.tw/appy_202402/video/solsys3d_202401.mp4
