@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:35:14 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 23:55:19 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -224,6 +224,11 @@ for number in sorted (dic_elements.keys ()):
 
 # printing status
 print (f'Finished adding Jovian Trojan asteroids to the simulation!')
+
+# setting for active particles
+#  sim.N_active = 10 ==> only first 10 objects affect their gravity
+#                        to other particles
+sim.N_active = 10
 
 # printing simulation object
 print (sim)
