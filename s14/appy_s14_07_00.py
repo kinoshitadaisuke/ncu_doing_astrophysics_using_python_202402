@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:35:37 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 00:47:44 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -12,6 +12,9 @@ import numpy
 
 # MPC's orbital elements file
 file_mpcorb = 'MPCORB.DAT.gz'
+
+# output file
+file_output = 'iss.list'
 
 # number of asteroids to process
 n_asteroids = 5000
@@ -77,12 +80,22 @@ with gzip.open (file_mpcorb, 'rb') as fh:
             # set the flag to 'YES'
             data_line = 'YES'
             continue
-            
-for number in sorted (dic_elements.keys ()):
-    print (f"{number:8s}", \
-           f"{dic_elements[number]['a']:10.8f}", \
-           f"{dic_elements[number]['e']:10.8f}", \
-           f"{dic_elements[number]['i']:10.8f}", \
-           f"{dic_elements[number]['peri']:10.8f}", \
-           f"{dic_elements[number]['node']:10.8f}", \
-           f"{dic_elements[number]['M']:10.8f}")
+
+# opening file for writing
+with open (file_output, 'w') as fh:
+    # header
+    header = f'# asteroid number, a, e, i, peri, node, M\n'
+    # writing header to file
+    fh.write (header)
+    # writing data
+    for number in sorted (dic_elements.keys ()):
+        # data
+        record = f"{number:8s}" \
+            + f" {dic_elements[number]['a']:10.8f}" \
+            + f" {dic_elements[number]['e']:10.8f}" \
+            + f" {dic_elements[number]['i']:10.8f}" \
+            + f" {dic_elements[number]['peri']:10.8f}" \
+            + f" {dic_elements[number]['node']:10.8f}" \
+            + f" {dic_elements[number]['M']:10.8f}\n"
+        # writing data to file
+        fh.write (record)
