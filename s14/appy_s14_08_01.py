@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:36:03 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 01:28:30 (UT+8) daisuke>
 #
 
 # importing gzip module
@@ -307,9 +307,15 @@ for i in range (n_output):
     pluto = make_sphere (ps[9].x, ps[9].y, ps[9].z, 0.05, 'cadetblue')
 
     # plotting asteroids
+    asteroids_x = []
+    asteroids_y = []
+    asteroids_z = []
     for j in range (n_minorbody):
-        ax.scatter (ps[j+10].x, ps[j+10].y, ps[j+10].z, \
-                    s=1.0, color='saddlebrown', alpha=0.5)
+        asteroids_x.append (ps[j+10].x)
+        asteroids_y.append (ps[j+10].y)
+        asteroids_z.append (ps[j+10].z)
+    ax.scatter (asteroids_x, asteroids_y, asteroids_z, \
+                s=1.0, color='saddlebrown', alpha=0.5)
 
     # title
     title = ax.text2D (0.5, 0.75, f'Inner Solar System', \
