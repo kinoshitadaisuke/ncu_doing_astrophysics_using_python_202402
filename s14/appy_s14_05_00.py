@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:34:45 (UT+8) daisuke>
+# Time-stamp: <2024/05/21 11:14:59 (UT+8) daisuke>
 #
 
 # importing datetime module
@@ -68,6 +68,11 @@ for name in majorbody.keys ():
 # adding minor bodies
 for name in minorbody.keys ():
     sim.add (minorbody[name], date=t_epoch, hash=name)
+
+# setting for active particles
+#  sim.N_active = 10 ==> only first 10 objects affect their gravity
+#                        to other particles
+sim.N_active = 10
 
 # printing simulation
 print (sim)
