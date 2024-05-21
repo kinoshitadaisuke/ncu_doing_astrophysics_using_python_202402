@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:32:30 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 17:53:27 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -18,7 +18,7 @@ descr  = "retrieving position of a solar system object using JPL Horizons"
 parser = argparse.ArgumentParser (description=descr)
 
 # adding arguments
-parser.add_argument ('-t', '--datetime', default='2024-01-01T12:00:00', \
+parser.add_argument ('-t', '--datetime', default='2000-01-01T12:00:00', \
                      help='date/time in UTC as YYYY-MM-DDThh:mm:ss format')
 parser.add_argument ('-o', '--obscode', default='D35', \
                      help='observatory code (default: D35)')
