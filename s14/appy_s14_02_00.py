@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:33:21 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 19:19:56 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -18,7 +18,7 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # file name
-file_fig = 'ai2023_s14_02_00.png'
+file_fig = 'appy_s14_02_00.png'
 
 # target list
 # Earth, Mars
@@ -81,4 +81,4 @@ ax.plot (datetime64, dist, \
 ax.legend ()
 
 # saving the plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
