@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/15 08:32:45 (UT+8) daisuke>
+# Time-stamp: <2024/05/20 19:06:25 (UT+8) daisuke>
 #
 
 # importing argparse module
@@ -23,7 +23,7 @@ list_method = [None, 'smallbody', 'designation', \
                'name', 'asteroid_name', 'comet_name']
 
 # adding arguments
-parser.add_argument ('-t', '--datetime', default='2024-01-01T12:00:00', \
+parser.add_argument ('-t', '--datetime', default='2000-01-01T12:00:00', \
                      help='date/time in UTC as YYYY-MM-DDThh:mm:ss format')
 parser.add_argument ('-l', '--length', type=float, default=0.1, \
                      help='length of ephemeris retrieval in day (default: 0.1)')
