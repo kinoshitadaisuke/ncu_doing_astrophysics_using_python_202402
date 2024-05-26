@@ -1,20 +1,20 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:46:54 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 07:15:03 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
 
 # data file
-file_data = 'ai2023_s15_04_00.data'
+file_data = 'appy_s15_04_00.data'
 
 # output file for training dataset
-file_training = 'ai2023_s15_04_02_training.data'
+file_training = 'appy_s15_04_02_training.data'
 
 # output file for testing dataset
-file_testing = 'ai2023_s15_04_02_testing.data'
+file_testing = 'appy_s15_04_02_testing.data'
 
 # fraction of training data
 fraction_training = 0.7
