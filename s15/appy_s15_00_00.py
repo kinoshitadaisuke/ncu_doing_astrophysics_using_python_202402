@@ -1,11 +1,14 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:44:55 (UT+8) daisuke>
+# Time-stamp: <2024/05/26 18:02:16 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
+
+# output file name
+file_output = 'appy_s15_00_00.data'
 
 # mean value of feature X for group A
 mean_A_X = 1.0
@@ -56,9 +59,16 @@ for i in range (n_B):
     data_B_X[i] = data_B_X[i] + a * i
     data_B_Y[i] = data_B_Y[i] + b * i
 
-# printing synthetic data
-print (f'# value of feature X, value of feature Y, classified group')
-for i in range (n_A):
-    print (f'{data_A_X[i]:8.4f}, {data_A_Y[i]:8.4f}, A')
-for i in range (n_B):
-    print (f'{data_B_X[i]:8.4f}, {data_B_Y[i]:8.4f}, B')
+# opening file for writing
+with open (file_output, 'w') as fh:
+    # header of output file
+    header = f'# value of feature X, value of feature Y, group\n'
+    # writing header to output file
+    fh.write (header)
+    # writing synthetic data
+    for i in range (n_A):
+        record = f'{data_A_X[i]:8.4f}, {data_A_Y[i]:8.4f}, A\n'
+        fh.write (record)
+    for i in range (n_B):
+        record = f'{data_B_X[i]:8.4f}, {data_B_Y[i]:8.4f}, B\n'
+        fh.write (record)
