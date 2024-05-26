@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:47:03 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 07:23:37 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,13 +16,13 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # training data file
-file_training = 'ai2023_s15_04_02_training.data'
+file_training = 'appy_s15_04_02_training.data'
 
 # testing data file
-file_testing = 'ai2023_s15_04_02_testing.data'
+file_testing = 'appy_s15_04_02_testing.data'
 
 # figure file
-file_fig = 'ai2023_s15_04_04.png'
+file_fig = 'appy_s15_04_04.png'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -177,4 +177,4 @@ ax.set_title ('Results of classification of testing dataset')
 ax.legend ()
 
 # saving plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
