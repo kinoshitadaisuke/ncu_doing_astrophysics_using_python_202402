@@ -1,11 +1,14 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:46:42 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 07:12:51 (UT+8) daisuke>
 #
 
 # importing numpy module
 import numpy
+
+# output file name
+file_output = 'appy_s15_04_00.data'
 
 # making a random number generator
 rng = numpy.random.default_rng ()
@@ -16,7 +19,7 @@ b_0     = 4.0
 a_1     = 0.3
 b_1     = 27.0
 c_x     = 18.0
-c_y     = 42.0
+c_y     = 47.0
 n_0     = 400
 n_1     = 300
 n_2     = 200
@@ -29,11 +32,19 @@ data_1y = a_1 * data_1x + b_1 + noise1
 data_2x = rng.normal (loc=0.0, scale=2.0, size=n_2) + c_x
 data_2y = rng.normal (loc=0.0, scale=4.0, size=n_2) + c_y
 
-# printing data
-print (f'# feature X, feature Y, classification')
-for i in range (data_0x.size):
-    print (f'{data_0x[i]:8.4f} {data_0y[i]:8.4f} A')
-for i in range (data_1x.size):
-    print (f'{data_1x[i]:8.4f} {data_1y[i]:8.4f} B')
-for i in range (data_2x.size):
-    print (f'{data_2x[i]:8.4f} {data_2y[i]:8.4f} C')
+# opening file for writing
+with open (file_output, 'w') as fh:
+    # header of output file
+    header = f'# feature X, feature Y, classification\n'
+    # writing header to output file
+    fh.write (header)
+    # writing data to output file
+    for i in range (data_0x.size):
+        record = f'{data_0x[i]:8.4f} {data_0y[i]:8.4f} A\n'
+        fh.write (record)
+    for i in range (data_1x.size):
+        record = f'{data_1x[i]:8.4f} {data_1y[i]:8.4f} B\n'
+        fh.write (record)
+    for i in range (data_2x.size):
+        record = f'{data_2x[i]:8.4f} {data_2y[i]:8.4f} C\n'
+        fh.write (record)
