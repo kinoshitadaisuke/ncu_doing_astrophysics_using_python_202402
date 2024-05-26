@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:45:10 (UT+8) daisuke>
+# Time-stamp: <2024/05/26 18:12:49 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,10 +16,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file
-file_data = 'ai2023_s15_00_00.data'
+file_data = 'appy_s15_00_00.data'
 
 # figure file
-file_fig = 'ai2023_s15_00_03.png'
+file_fig = 'appy_s15_00_03.png'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -120,7 +120,6 @@ for i in range (n_A):
 for i in range (n_B):
     data_B_X[i] = data_B_X[i] + a * i
     data_B_Y[i] = data_B_Y[i] + b * i
-
 data_AB_X = numpy.concatenate ( [data_A_X, data_B_X] )
 data_AB_Y = numpy.concatenate ( [data_A_Y, data_B_Y] )
 
@@ -160,4 +159,4 @@ ax.set_title ('Test dataset and built classifier by learning training dataset')
 ax.legend ()
 
 # saving plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
