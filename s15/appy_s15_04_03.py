@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:46:59 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 07:17:05 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,10 +16,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file
-file_data = 'ai2023_s15_04_02_training.data'
+file_data = 'appy_s15_04_02_training.data'
 
 # figure file
-file_fig = 'ai2023_s15_04_03.png'
+file_fig = 'appy_s15_04_03.png'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -109,4 +109,4 @@ ax.set_title ('Built classifier by learning training dataset')
 ax.legend ()
 
 # saving plot into a file
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
