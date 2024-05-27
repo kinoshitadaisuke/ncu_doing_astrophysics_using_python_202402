@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:54:19 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 15:43:03 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,13 +16,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file
-file_training = 'ai2023_s15_05_07_training.data'
+file_training = 'appy_s15_05_07_training.data'
 
 # data file
-file_testing = 'ai2023_s15_05_07_testing.data'
-
-# figure file
-file_fig = 'ai2023_s15_05_09.png'
+file_testing = 'appy_s15_05_07_testing.data'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -136,7 +133,7 @@ array_classified_B_Y = numpy.array (classified_B_Y)
 array_classified_B_Z = numpy.array (classified_B_Z)
 
 # printing a list of misclassified data
-print (f'Results of classification:')
+print (f'# Results of classification:')
 for i in range (prediction.size):
     if (prediction[i] != array_testing_group[i]):
         print (f'x = {array_testing_features[i][0]:8.4f},', \
