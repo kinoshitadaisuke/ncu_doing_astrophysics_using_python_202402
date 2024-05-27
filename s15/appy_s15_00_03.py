@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/26 18:12:49 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 18:13:21 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -153,7 +153,7 @@ ax.plot (data_AB_X, data_AB_Y, \
          label='Test data')
 
 # title
-ax.set_title ('Test dataset and built classifier by learning training dataset')
+ax.set_title ('Generated test dataset for classification')
 
 # legend
 ax.legend ()
