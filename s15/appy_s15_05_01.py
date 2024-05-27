@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:53:42 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 15:15:31 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -12,10 +12,10 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file
-file_data = 'ai2023_s15_05_00.data'
+file_data = 'appy_s15_05_00.data'
 
 # figure file
-file_fig = 'ai2023_s15_05_01.png'
+file_fig = 'appy_s15_05_01.png'
 
 # lists for storing data
 list_a_x = []
@@ -80,7 +80,7 @@ ax1.plot (array_b_x, array_b_y, \
           label='Known B')
 
 # title
-ax1.set_title ('Training dataset')
+ax1.set_title ('Synthetic dataset')
 
 # legend
 ax1.legend ()
@@ -101,11 +101,11 @@ ax2.plot (array_b_x, array_b_z, \
           label='Known B')
 
 # title
-ax2.set_title ('Training dataset')
+ax2.set_title ('Synthetic dataset')
 
 # legend
 ax2.legend ()
 
 # saving plot into a file
 fig.tight_layout ()
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
