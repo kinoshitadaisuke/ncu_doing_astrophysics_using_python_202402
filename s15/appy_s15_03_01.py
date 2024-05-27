@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/26 19:06:33 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 18:20:36 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -72,7 +72,7 @@ ax.plot (array_b_x, array_b_y, \
          label='Known B')
 
 # title
-ax.set_title ('Training dataset')
+ax.set_title ('Synthetic dataset for classification')
 
 # legend
 ax.legend ()
