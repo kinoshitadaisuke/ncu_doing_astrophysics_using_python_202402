@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:55:05 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:03:50 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -18,7 +18,7 @@ file_ubv = 'compil.ast.ubv-photometry/data/ubvmean.tab'
 file_class = 'ast_taxonomy/data/taxonomy10.tab'
 
 # output file
-file_output = 'ai2023_s15_06_07.png'
+file_output = 'appy_s15_06_07.png'
 
 # making empty dictionaries for storing data
 colour_ub     = {}
@@ -174,4 +174,4 @@ ax.errorbar (list_d_ub, list_d_bv, xerr=list_d_ub_err, yerr=list_d_bv_err, \
 ax.legend ()
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
