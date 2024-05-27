@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:55:37 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:21:56 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_sdss = 'gbo.sdss-moc.phot/data/sdssmocadr4.tab'
 
 # output file
-file_output = 'ai2023_s15_07_02.png'
+file_output = 'appy_s15_07_02.png'
 
 # making empty dictionary to store data
 colours = {}
@@ -89,4 +89,4 @@ ax.errorbar (list_gr, list_iz, \
              ecolor='black', capsize=1)
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
