@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:54:53 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 15:55:39 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -15,7 +15,7 @@ import matplotlib.backends.backend_agg
 file_ubv = 'compil.ast.ubv-photometry/data/ubvmean.tab'
 
 # output file
-file_output = 'ai2023_s15_06_04.png'
+file_output = 'appy_s15_06_04.png'
 
 # making empty lists for storing data
 list_ub     = []
@@ -85,4 +85,4 @@ ax.errorbar (array_ub, array_bv, xerr=array_ub_err, yerr=array_bv_err, \
 ax.legend ()
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
