@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:55:18 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:07:28 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -21,7 +21,7 @@ file_albedo = 'compil.ast.albedos/data/albedos.tab'
 file_class = 'ast_taxonomy/data/taxonomy10.tab'
 
 # output file
-file_output = 'ai2023_s15_06_10.png'
+file_output = 'appy_s15_06_10.png'
 
 # making empty dictionaries for storing data
 colour_ub     = {}
@@ -225,4 +225,4 @@ ax.errorbar (list_d_bv, list_d_albedo, \
 ax.legend ()
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
