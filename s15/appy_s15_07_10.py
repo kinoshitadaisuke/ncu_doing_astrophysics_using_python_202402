@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:56:24 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:43:46 (UT+8) daisuke>
 #
 
 # importing scikit-learn module
@@ -13,13 +13,13 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # training data file
-file_training = 'ai2023_s15_07_08_training.data'
+file_training = 'appy_s15_07_08_training.data'
 
 # testing data file
-file_testing = 'ai2023_s15_07_08_testing.data'
+file_testing = 'appy_s15_07_08_testing.data'
 
 # output file
-file_output = 'ai2023_s15_07_10.png'
+file_output = 'appy_s15_07_10.png'
 
 # making empty lists for storing data
 list_training_number   = []
@@ -134,4 +134,4 @@ ax.plot (list_testing_s_colour, list_testing_s_albedo, \
 ax.legend ()
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
