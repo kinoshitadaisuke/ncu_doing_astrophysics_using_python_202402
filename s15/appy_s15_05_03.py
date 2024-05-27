@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:53:51 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 15:21:11 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -16,13 +16,13 @@ import matplotlib.figure
 import matplotlib.backends.backend_agg
 
 # data file
-file_training = 'ai2023_s15_05_02_training.data'
+file_training = 'appy_s15_05_02_training.data'
 
 # data file
-file_testing = 'ai2023_s15_05_02_testing.data'
+file_testing = 'appy_s15_05_02_testing.data'
 
 # figure file
-file_fig = 'ai2023_s15_05_03.png'
+file_fig = 'appy_s15_05_03.png'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -197,4 +197,4 @@ ax2.legend ()
 
 # saving plot into a file
 fig.tight_layout ()
-fig.savefig (file_fig, dpi=100)
+fig.savefig (file_fig, dpi=150)
