@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:55:01 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 15:59:05 (UT+8) daisuke>
 #
 
 # data file
@@ -29,4 +29,4 @@ with open (file_data, 'r') as fh:
             taxonomy = 'others'
         # printing taxonomic classification
         if not ( (taxonomy == 'others') or (number == 0) ):
-            print (f'{number:6d} ==> {taxonomy} or its variant')
+            print (f'{number:6d}  ==>  {taxonomy}-type or its variant')
