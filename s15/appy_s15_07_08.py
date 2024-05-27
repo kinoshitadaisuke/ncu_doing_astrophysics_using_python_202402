@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:56:14 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:37:25 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -27,10 +27,10 @@ list_albedo_files = [
 ]
 
 # output file for training dataset
-file_training = 'ai2023_s15_07_08_training.data'
+file_training = 'appy_s15_07_08_training.data'
 
 # output file for testing dataset
-file_testing = 'ai2023_s15_07_08_testing.data'
+file_testing = 'appy_s15_07_08_testing.data'
 
 # making empty dictionaries for storing data
 dic_subclass = {}
