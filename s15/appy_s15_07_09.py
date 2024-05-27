@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:56:20 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:41:36 (UT+8) daisuke>
 #
 
 # importing scikit-learn module
@@ -9,10 +9,10 @@ import sklearn.gaussian_process
 import sklearn.inspection
 
 # training data file
-file_training = 'ai2023_s15_07_08_training.data'
+file_training = 'appy_s15_07_08_training.data'
 
 # testing data file
-file_testing = 'ai2023_s15_07_08_testing.data'
+file_testing = 'appy_s15_07_08_testing.data'
 
 # making empty lists for storing data
 list_training_number   = []
