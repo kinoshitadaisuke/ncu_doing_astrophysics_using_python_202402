@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/24 08:56:10 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 16:35:51 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -31,7 +31,7 @@ list_albedo_files = [
 ]
 
 # output file
-file_output = 'ai2023_s15_07_07.png'
+file_output = 'appy_s15_07_07.png'
 
 # making empty dictionaries for storing data
 dic_subclass = {}
@@ -234,4 +234,4 @@ ax.errorbar (list_d_colour, list_d_albedo, \
 ax.legend ()
 
 # saving plot into file
-fig.savefig (file_output, dpi=100)
+fig.savefig (file_output, dpi=150)
