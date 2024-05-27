@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/26 18:43:55 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 18:17:51 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -93,7 +93,7 @@ ax.plot (array_b_x, array_b_y, \
          label='Known B')
 
 # title
-ax.set_title ('Built classifier by learning training dataset')
+ax.set_title ('Classifier built by learning training dataset')
 
 # legend
 ax.legend ()
