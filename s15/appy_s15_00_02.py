@@ -1,7 +1,7 @@
 #!/usr/pkg/bin/python3.12
 
 #
-# Time-stamp: <2024/05/26 18:09:11 (UT+8) daisuke>
+# Time-stamp: <2024/05/27 18:10:12 (UT+8) daisuke>
 #
 
 # importing numpy module
@@ -19,7 +19,7 @@ import matplotlib.backends.backend_agg
 file_data = 'appy_s15_00_00.data'
 
 # figure file
-file_fig = 'appy_s15_00_02.pdf'
+file_fig = 'appy_s15_00_02.png'
 
 # making empty lists for storing data
 list_a_x               = []
@@ -95,7 +95,7 @@ ax.plot (array_b_x, array_b_y, \
          label='Known B')
 
 # title
-ax.set_title ('Built classifier by learning training dataset')
+ax.set_title ('Classifier built by learning training dataset')
 
 # legend
 ax.legend ()
