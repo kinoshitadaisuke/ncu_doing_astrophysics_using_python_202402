@@ -1,8 +1,10 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/05/25 08:07:23 (UT+8) daisuke>
+Time-stamp: <2024/07/09 22:47:35 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
+
+The lecture material will be available to everyone soon.
 
 ## Online resources
 
