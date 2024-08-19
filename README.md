@@ -1,6 +1,6 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/08/19 14:43:48 (UT+8) daisuke>
+Time-stamp: <2024/08/19 14:46:32 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
 
@@ -11,55 +11,55 @@ The lecture material is now available to everyone.
 For lecture in August 2024, please download lecture notes in PDF format and Jupyter Notebook files from following links.
 
 - Session 00: Executing a Python script
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s00/appy_202402_s00pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s00pe.pdf
   - https://colab.research.google.com/drive/1MgWdLvLTigcYFEHJ4j0j4GCyrO72QI0K?usp=sharing
 - Session 01: Basic Python programming
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s01/appy_202402_s01pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s01pe.pdf
   - https://colab.research.google.com/drive/1dhpso0_lUENF4SJK6VLaZ63OLPM7vzeC?usp=sharing
 - Session 02: Importing and using Python modules
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s02/appy_202402_s02pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s02pe.pdf
   - https://colab.research.google.com/drive/1Wdo8D4hE87AcJ8xPqRrp6odrtkX0uiot?usp=sharing
 - Session 03: Using Numpy for calculations
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s03/appy_202402_s03pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s03pe.pdf
   - https://colab.research.google.com/drive/1CbsWfSr_uML9eI24tFpf0mk7htmLJCt7?usp=sharing
 - Session 04: Visualisation of data using Matplotlib
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s04/appy_202402_s04pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s04pe.pdf
   - https://colab.research.google.com/drive/1XMaGBfw1smOni0VMoZVbPYKAY59QRyFX?usp=sharing
 - Session 05: Scientific calculations and analyses using SciPy
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s05/appy_202402_s05pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s05pe.pdf
   - https://colab.research.google.com/drive/1HCSdCoMRB1GhmgqfqMYwXq6z6YeFbPPp?usp=sharing
 - Session 06: Building and querying relational database using Python
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s06/appy_202402_s06pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s06pe.pdf
   - https://colab.research.google.com/drive/12rB83q8fUN_L4p1zEAYMTSX9ZwPh4Yno?usp=sharing
 - Session 07: Astronomical calculations using Astropy
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s07/appy_202402_s07pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s07pe.pdf
   - https://colab.research.google.com/drive/1l9Qh1LTMkiEgu2oepLI5AaTGY1DT298t?usp=sharing
 - Session 08: Blackbody radiation
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s08/appy_202402_s08pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s08pe.pdf
   - https://colab.research.google.com/drive/11Fy7kZe4Wv5sWPC8ormWGUWvvGGSuJrn?usp=sharing
 - Session 09: Distribution of asteroids, stars, and galaxies
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s09/appy_202402_s09pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s09pe.pdf
   - https://colab.research.google.com/drive/17A2dCAG17V5gOXNEkIMUgDqmuBIfPboj?usp=sharing
 - Session 10: Hubble diagram and expansion of the Universe
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s10/appy_202402_s10pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s10pe.pdf
   - https://colab.research.google.com/drive/1ShQjrPur1Rjy0BzzY22i0I96WX2LjzQL?usp=sharing
 - Session 11: Estimating ages of star clusters
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s11/appy_202402_s11pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s11pe.pdf
   - https://colab.research.google.com/drive/1ziQr4JTFTiuwpPbw3MdvS3CwiEVu-SHW?usp=sharing
 - Session 12: Periodicity analysis of astronomical time-series data
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s12/appy_202402_s12pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s12pe.pdf
   - https://colab.research.google.com/drive/1MBZ6OWUpN3mo2vbcSEyNi_FGGxIOT43V?usp=sharing
 - Session 13: Source extraction and image alignment of astronomical images
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s13/appy_202402_s13pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s13pe.pdf
   - https://colab.research.google.com/drive/1dg33tmSiuiai3CUyThprOMlMjaB_WPSk?usp=sharing
 - Session 14: Planetary motion and orbital integration
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s14/appy_202402_s14pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s14pe.pdf
   - https://colab.research.google.com/drive/1d1BX8RO4FJ9NWhzJW4pkG2XtEGblyoPT?usp=sharing
 - Session 15: Classification of astronomical objects using machine learning
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/s15/appy_202402_s15pe.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s15pe.pdf
   - https://colab.research.google.com/drive/1QCt-xHDfnsTOO4xvkCJ0QJkypNSzhZir?usp=sharing
 - Exercises
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/nchu_202408/appy_202408_exercises.pdf
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202408_exercises.pdf
 
 ## Online resources
 
