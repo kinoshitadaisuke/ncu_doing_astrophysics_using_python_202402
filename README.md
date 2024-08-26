@@ -1,17 +1,13 @@
 # Doing Astrophysics using Python
 
-Time-stamp: <2024/08/19 15:51:14 (UT+8) daisuke>
+Time-stamp: <2024/08/26 18:25:38 (UT+8) daisuke>
 
 This is a repository for the course "Doing Astrophysics using Python" (course ID: PH3066) offered at National Central University in Taiwan from February 2024 to June 2024.
 
+## Lecture material
+
 The lecture material is now available to everyone.
 
-## For students at NCHU
-
-For lecture in August 2024, please download lecture notes in PDF format and Jupyter Notebook files from following links.
-
-- Guide to this course
-  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202408_guide.pdf
 - Session 00: Executing a Python script
   - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s00pe.pdf
   - https://colab.research.google.com/drive/1MgWdLvLTigcYFEHJ4j0j4GCyrO72QI0K?usp=sharing
@@ -60,6 +56,13 @@ For lecture in August 2024, please download lecture notes in PDF format and Jupy
 - Session 15: Classification of astronomical objects using machine learning
   - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202402_s15pe.pdf
   - https://colab.research.google.com/drive/1QCt-xHDfnsTOO4xvkCJ0QJkypNSzhZir?usp=sharing
+
+## For students at NCHU
+
+For lecture in August 2024, please download lecture notes in PDF format and Jupyter Notebook files from following links.
+
+- Guide to this course
+  - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202408_guide.pdf
 - Exercises
   - https://s3b.astro.ncu.edu.tw/appy_202402/pdf2/appy_202408_exercises.pdf
 
